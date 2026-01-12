@@ -2,21 +2,19 @@
 import type { NavLink } from "./navigation-links";
 type Props = NavLink;
 const { name, path, icon: NavIcon } = Astro.props;
-const { pathname } = Astro.url;
-const isActive = path === pathname;
 ---
 
 <a
-  data-active={isActive ? "current" : "none"}
+  data-nav-link
   class:list={[
     "text-sm",
+    "text-white",
     "flex",
     "items-center",
     "gap-2",
     "overflow-hidden",
     "px-4",
     "py-2",
-    isActive ? "text-link" : "text-white",
     "font-semibold",
     "uppercase",
     "relative",
@@ -33,3 +31,14 @@ const isActive = path === pathname;
   >
   </div>
 </a>
+
+<style>
+  [data-active="current"] {
+    color: var(--color-link);
+  }
+</style>
+
+<script>
+  import { updateActiveLinks } from "../../scripts/path";
+  document.addEventListener("astro:page-load", updateActiveLinks);
+</script>
