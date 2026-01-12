@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary: #006957;
+  --color-background: #F9F8F6;
+  --color-link: #f4f754;
+  --spacing-navbar-y: 85px;
+  --spacing-card-y: 435px;
+  --spacing-carousel-x: 45%;
+  --spacing-hero-y: calc(100svh - var(--spacing-navbar-y));
+  --announcement-auto-row: 150px;
+  /** Grid layouts */
+  --website-cols: 1fr 330px;
+  --main-rows: repeat(auto-fit, var(--spacing-card-y));
+  --announcement-cols: repeat(auto-fill, minmax(300px, 1fr));
+  --announcement-rows: repeat(auto-fill, var(--announcement-auto-row));
+  --font-logo: "Merriweather", sans-serif;
+  --font-primary: "Manrope", sans-serif;
+  /** Swiper css variables **/
+  --sp-pagination: #F5F2F2;
+  --sp-navigation: #F5F2F2;
+
+  --mask-stop: 75%;
+
+  /** Custom animations */
+  @keyframes auto-scroll {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(calc(-1 * var(--item) * 50%));
+    }
+  }
+
+  @keyframes flip {
+
+    0%,
+    45% {
+      transform: translateY(0);
+    }
+
+    50%,
+    95% {
+      transform: translateY(-33.33%);
+    }
+
+    100% {
+      transform: translateY(-66.66%);
+    }
+  }
+
+  --animate-flip: flip 5s linear infinite;
+  --flip-height: 1.2em;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility animate-auto-scroll {
+  animation: auto-scroll 30s linear infinite;
+}
+
+@utility counter-carousel {
+  counter-reset: item;
+}
+
+@utility counter-carousel-increment {
+  counter-increment: item;
+}
+
+@utility carousel-track {
+  animation: auto-scroll 20s linear infinite;
+}
+
+@utility hamburger-shadow {
+  box-shadow: 0 10px 0 #fff;
+}
+
+@utility hamburger-hide-shadow {
+  box-shadow: 0 0 0 #fff;
+}
+
+@theme {
+  /* Tus configuraciones de tema aquí */
+}
+
+@utility mask-fade-bottom {
+  mask-image: linear-gradient(to bottom, black var(--mask-stop), transparent);
+  -webkit-mask-image: linear-gradient(to bottom, black var(--mask-stop), transparent);
+}
+
+@layer components {
+  .flip {
+    overflow: hidden;
+    height: var(--flip-height);
+    display: block;
+    line-height: 1.2em;
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    animation: var(--animate-flip);
+  }
+
+  .stack>* {
+    padding: 0 calc(var(--spacing) * 3);
+    white-space: nowrap;
+    height: var(--flip-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

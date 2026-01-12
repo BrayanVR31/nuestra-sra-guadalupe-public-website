@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SchedGrid from "../../components/schedule/SchedGrid.astro";
+import Hero from "../../components/Hero.astro";
+---
+
+<BaseLayout title="horarios">
+  <Hero
+    title="Encuentra tu momento con Dios"
+    description="Consulta nuestros horarios de misas, confesiones y adoración."
+    image="/hero/horarios.jpg"
+  />
+  <div class="min-h-hero-y max-w-7xl mx-auto">
+    <div class="text-center">
+      <h2
+        class="font-extrabold relative text-center text-4xl mt-14 mb-8 before:content-[''] before:absolute before:-bottom-8 mx-auto before:w-1/3 inline-flex before:h-1.5 before:bg-link before:left-1/2 before:-translate-x-1/2"
+      >
+        Tiempo para dios
+      </h2>
+    </div>
+    {/** Schedule */}
+    <div class="border border-gray-500 grid grid-cols-3 mt-6 mb-14">
+      <SchedGrid />
+    </div>
+  </div>
+</BaseLayout>

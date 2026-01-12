@@ -1,0 +1,150 @@
+---
+import { navLinks } from "./navigation-links";
+// HamburgerButton.astro
+interface Props {
+  class?: string;
+}
+
+const { class: className = "" } = Astro.props;
+const { pathname } = Astro.url;
+---
+
+<div class="hidden max-sm:block">
+  <button
+    id="hamburger-btn"
+    aria-label="Toggle menu"
+    aria-expanded="false"
+    class={`w-14 h-14 bg-primary/70 hover:bg-primary/85  rounded-xl cursor-pointer flex items-center justify-center transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 group ${className}`}
+  >
+    <div
+      class="hamburger-icon relative w-7 h-0.5 bg-white transition-all duration-300 ease-in-out"
+    >
+      <span
+        class="hamburger-line-top absolute -top-2.5 left-0 w-full h-0.5 bg-white transition-all duration-300 ease-in-out"
+      ></span>
+      <span
+        class="hamburger-line-bottom absolute top-2.5 left-0 w-full h-0.5 bg-white transition-all duration-300 ease-in-out"
+      ></span>
+    </div>
+  </button>
+  <div>
+    <ul
+      id="mobile-menu"
+      class="absolute bg-primary z-100 w-full left-0 hidden min-h-hero-y top-navbar-y translate-x-full transition-all duration-300"
+    >
+      {
+        navLinks.map((link) => (
+          <li>
+            <a
+              class:list={[
+                "p-5",
+                "block",
+                "text-center",
+                pathname === link.path
+                  ? "bg-link"
+                  : "text-white hover:bg-green-900",
+                "transition-all",
+                "duration-300",
+              ]}
+              href={link.path}
+            >
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</div>
+
+<style>
+  /* Estado activo del botón */
+  #hamburger-btn.active .hamburger-icon {
+    transform: rotate(135deg);
+  }
+
+  #hamburger-btn.active .hamburger-line-top {
+    top: 0;
+    transform: rotate(90deg);
+  }
+
+  #hamburger-btn.active .hamburger-line-bottom {
+    opacity: 0;
+  }
+
+  /* Hover cuando está abierto */
+  #hamburger-btn.active:hover .hamburger-icon {
+    transform: rotate(225deg);
+  }
+</style>
+
+<script>
+  class HamburgerButton {
+    private btn: HTMLButtonElement | null;
+    private isOpen: boolean = false;
+    private menu: HTMLUListElement | null;
+
+    constructor() {
+      this.btn = document.getElementById("hamburger-btn") as HTMLButtonElement;
+      this.menu = document.querySelector("#mobile-menu") as HTMLUListElement;
+      this.init();
+    }
+
+    init() {
+      if (!this.btn) return;
+
+      this.btn.addEventListener("click", () => this.toggle());
+
+      // Cerrar con tecla ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && this.isOpen) {
+          this.close();
+        }
+      });
+
+      // Exponer métodos públicos
+      (window as any).hamburgerButton = {
+        toggle: () => this.toggle(),
+        open: () => this.open(),
+        close: () => this.close(),
+        isOpen: () => this.isOpen,
+      };
+    }
+
+    toggle() {
+      this.isOpen ? this.close() : this.open();
+    }
+
+    open() {
+      this.isOpen = true;
+      this.btn?.classList.add("active");
+      this.btn?.setAttribute("aria-expanded", "true");
+      this.menu?.classList.remove("hidden");
+      this.menu?.classList.add("translate-x-0");
+      this.menu?.classList.remove("translate-x-full");
+
+      // Disparar evento personalizado
+      window.dispatchEvent(new CustomEvent("hamburger:open"));
+    }
+
+    close() {
+      this.isOpen = false;
+      this.btn?.classList.remove("active");
+      this.btn?.setAttribute("aria-expanded", "false");
+
+      this.menu?.classList.add("hidden");
+      // Disparar evento personalizado
+      window.dispatchEvent(new CustomEvent("hamburger:close"));
+    }
+  }
+
+  // Inicializar
+  document.addEventListener("DOMContentLoaded", () => {
+    new HamburgerButton();
+  });
+
+  // Soporte para View Transitions de Astro
+  document.addEventListener("astro:page-load", () => {
+    new HamburgerButton();
+  });
+</script>

@@ -1,0 +1,40 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../global.css";
+import Navbar from "../components/navbar/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nuestra Sra. Guadalupe | {title}</title>
+    <ClientRouter />
+  </head>
+  <body class="bg-background font-primary">
+    <Navbar />
+    <!-- Main content -->
+    <main>
+      <slot />
+    </main>
+    <!-- Footer -->
+    <div class="bg-primary text-white py-8">
+      <Footer />
+    </div>
+  </body>
+</html>
+
+<script>
+  import { showBoxOnScroll } from "../scripts/scroll";
+  document.addEventListener("astro:page-load", () => {
+    showBoxOnScroll();
+  });
+</script>

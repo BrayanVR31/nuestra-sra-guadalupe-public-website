@@ -1,0 +1,16 @@
+---
+// import Carousel from "../components/Carousel.astro";
+import SaintCard from "../components/SaintCard";
+import { getCurrentSaintList } from "../services/anciprensa";
+
+const saints = await getCurrentSaintList();
+---
+
+<aside>
+  <h4
+    class="font-bold text-2xl pb-2 text-neutral-800 text-center border-b border-neutral-300 font-logo mb-4"
+  >
+    Santoral del día
+  </h4>
+  {saints && saints.map((saint) => <SaintCard client:visible {...saint} />)}
+</aside>

@@ -1,0 +1,27 @@
+---
+interface Props {
+  to: string;
+  isIndex?: boolean; // When path is index "" or "/"
+}
+const currentPath = Astro.url.pathname;
+const { to, isIndex } = Astro.props;
+const isActive = isIndex
+  ? currentPath === "/" || currentPath === ""
+  : currentPath === to;
+---
+
+<a
+  class:list={[
+    "px-2",
+    "py-1.5",
+    { "text-link": isActive },
+    "border-b-2",
+    { "border-transparent": !isActive },
+    "hover:text-link",
+    "transition-colors",
+    "duration-300",
+  ]}
+  href={to}
+>
+  <slot />
+</a>

@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Communication from "../../components/contact/Communication.astro";
+import CommentForm from "../../components/contact/CommentForm.astro";
+import LeafletMap from "../../components/contact/LeafletMap";
+import Hero from "../../components/Hero.astro";
+---
+
+<BaseLayout title="contacto">
+  <Hero
+    title="Estamos aquí para ti"
+    description="¿Necesitas ayuda o tienes alguna pregunta? Contáctanos."
+    image="/hero/contacto.jpg"
+  />
+  <!-- Contact form section -->
+  <div class="min-h-svh max-w-7xl mx-auto my-20">
+    <h4 class="font-bold text-3xl text-center mb-15">Formulario de contacto</h4>
+    <div class="grid grid-cols-3 max-w-5xl mx-auto">
+      <Communication
+        contactType="address"
+        destination="Insurgentes 12910, Guadalupe Hidalgo, Puebla, Mexico"
+      />
+      <Communication contactType="phone" destination="2222410039" />
+      <Communication
+        contactType="email"
+        destination="guadalupeymas@gmail.com"
+      />
+    </div>
+    <!-- Contact comment form -->
+    <div class="max-w-7xl">
+      <h4 class="font-bold text-3xl text-center mt-20 mb-15">
+        ¿Alguna pregunta o sugerencia? ¡Escríbanos!
+      </h4>
+      <div
+        class="grid grid-cols-2 relative bg-white p-6 gap-10 rounded-md shadow-sm overflow-hidden"
+      >
+        <div style={{ position: "relative", zIndex: 1 }}>
+          <LeafletMap client:only="react" transition:persist />
+        </div>
+        <div
+          class="border border-neutral-200 bg-white px-10 py-8 rounded-md shadow-sm"
+        >
+          <h5 class="font-semibold text-2xl text-neutral-800 mb-10">
+            A un clic de distancia
+          </h5>
+          <CommentForm />
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

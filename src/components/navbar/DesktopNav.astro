@@ -1,0 +1,14 @@
+---
+import { navLinks } from "./navigation-links";
+import NavLink from "./NavLink.astro";
+---
+
+<ul class="flex gap-6 max-sm:hidden">
+  {
+    navLinks.map((link) => (
+      <li>
+        <NavLink {...link} />
+      </li>
+    ))
+  }
+</ul>

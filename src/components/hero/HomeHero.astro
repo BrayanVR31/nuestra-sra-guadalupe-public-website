@@ -1,0 +1,61 @@
+---
+import { Icon } from "astro-icon/components";
+import { Facebook, Globe } from "@lucide/astro";
+import ChurchSlider from "../common/ChurchSlider";
+import SocialMediaLink from "../common/SocialMediaLink.astro";
+import home_01 from "../../assets/hero/home_01.jpeg";
+import home_02 from "../../assets/hero/home_02.jpeg";
+import home_03 from "../../assets/hero/home_03.jpeg";
+---
+
+<section data-scroll="hero" class="relative h-svh">
+  <div class="relative h-svh">
+    <ChurchSlider images={[home_01, home_02, home_03]} client:load />
+    <div
+      class="absolute w-full h-full flex items-center justify-center z-20 top-0 left-0"
+    >
+      <h1
+        class="text-6xl grow-0 shrink-0 font-extrabold text-white max-w-4xl text-center flex justify-center items-center gap-2.5 flex-col"
+      >
+        Bienvenidos a la Parroquia
+        <!-- Container -->
+        <span class="flip">
+          <span class="stack">
+            <!-- Item -->
+            <span class="bg-red-500">Nuestra Sra.</span>
+            <!-- Item -->
+            <span class="bg-primary">De Guadalupe</span>
+            <!-- Item -->
+            <span class="bg-red-500">Nuestra Sra.</span>
+          </span>
+        </span>
+      </h1>
+    </div>
+  </div>
+  <div class="flex flex-col absolute right-16 top-6 z-50 gap-4 hidden">
+    <SocialMediaLink
+      svgColor="#1877F2"
+      fg="#fff"
+      bg="#1877F2"
+      to="https://www.facebook.com/TeatinosPuebla/?locale=es_LA"
+    >
+      <Facebook />
+    </SocialMediaLink>
+    <SocialMediaLink
+      fg="#fff"
+      bg="#262626"
+      to="https://youtube.com/@teatinospuebla3010?si=FXi7TN1Jp6O0Lz_O"
+    >
+      <Icon name="logos/youtube" />
+    </SocialMediaLink>
+  </div>
+  <p
+    class="text-link items-center justify-center flex flex-col absolute top-6 right-0 z-50 bg-primary/65 backdrop-blur-lg gap-2 pt-2 hidden"
+  >
+    <span
+      class="rotate-180 text-sm tracking-widest"
+      style="writing-mode: vertical-lr;">Redes sociales</span
+    >
+    <Globe class="min-w-3.5 p-1 grow-0 shrink-0 bg-link text-primary" />
+  </p>
+</section>

@@ -1,0 +1,13 @@
+---
+import { announcements } from "./announcement";
+import Announcement from "../Announcement.astro";
+---
+
+<div>
+  <h3 class="font-bold text-3xl font-logo text-center mb-5">
+    Avisos a la Comunidad
+  </h3>
+  <div class="grid gap-8 grid-cols-(--announcement-cols) justify-center">
+    {announcements.map((announcement) => <Announcement {...announcement} />)}
+  </div>
+</div>

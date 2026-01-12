@@ -1,16 +1,16 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/hero/HomeHero.astro";
+import Content from "../components/home/Content.astro";
+import Aside from "../components/Aside.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Inicio">
+	<Hero />
+	<div
+		class="min-h-svh max-w-7xl mx-auto px-6 grid grid-cols-(--website-cols) max-sm:grid-cols-1 gap-16 my-10"
+	>
+		<Content />
+		<Aside />
+	</div>
+</BaseLayout>

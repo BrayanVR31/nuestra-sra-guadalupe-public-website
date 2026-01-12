@@ -1,0 +1,124 @@
+---
+import { Image } from "astro:assets";
+import { Facebook, Mail, MapPinned, Phone, Youtube } from "@lucide/astro";
+import FooterHeading from "./FooterHeading.astro";
+import CircleButton from "./CircleButton";
+// Asset images
+import ewtn from "../assets/logos/ewtn.jpg";
+import teatinos from "../assets/logos/teatinos.jpeg";
+import vatican from "../assets/logos/logo-vatican.png";
+---
+
+<footer
+  class="grid grid-cols-[repeat(auto-fit,250px)] md:grid-cols-1
+  gap-2 max-sm:gap-10 max-w-7xl mx-auto px-6 justify-between items-baseline"
+>
+  {/** Resources */}
+  <div>
+    <FooterHeading>Redes Sociales</FooterHeading>
+    <p class="text-sm text-pretty">
+      Entérate de los avisos parroquiales, cambios de horario y eventos
+      especiales al instante.
+    </p>
+    <ul class="flex items-center gap-2 mt-4">
+      <li>
+        <CircleButton
+          isExternal
+          bgColor="#1877F2"
+          to="https://www.facebook.com/TeatinosPuebla/?locale=es_LA"
+          type="link"
+        >
+          <Facebook class="fill-white text-transparent" />
+        </CircleButton>
+      </li>
+      <li>
+        <CircleButton
+          isExternal
+          to="https://youtube.com/@teatinospuebla3010?si=FXi7TN1Jp6O0Lz_O"
+          type="link"
+          bgColor="#FF0000"
+        >
+          <Youtube />
+        </CircleButton>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <FooterHeading>Recursos</FooterHeading>
+    <ul class="flex flex-col gap-4">
+      <li>
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://www.vatican.va/content/vatican/es.html"
+          class="flex items-center gap-4"
+        >
+          <div class="bg-white rounded-full p-1.5">
+            <div class="relative w-6 h-6 overflow-hidden rounded-full">
+              <Image
+                src={vatican}
+                class="w-full h-full object-cover"
+                alt="La santa sede"
+              />
+            </div>
+          </div>
+          La santa sede
+        </a>
+      </li>
+      <li>
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://www.ewtn.com/es"
+          class="flex items-center gap-4"
+        >
+          <div class="bg-[#c10f44] rounded-full p-1.5">
+            <div class="relative w-6 h-6 overflow-hidden rounded-full">
+              <Image src={ewtn} class="w-full h-full object-cover" alt="Ewtn" />
+            </div>
+          </div>
+          EWTN
+        </a>
+      </li>
+      <li>
+        <a
+          rel="noopener noreferrer"
+          target="_blank"
+          href="https://teatinos.org/"
+          class="flex items-center gap-4"
+        >
+          <div class="bg-[#363f5a] rounded-full p-1.5">
+            <div class="relative w-6 h-6 overflow-hidden rounded-full">
+              <Image
+                src={teatinos}
+                class="w-full h-full object-cover"
+                alt="Teatinos"
+              />
+            </div>
+          </div>
+          Teatinos
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div>
+    <FooterHeading>¿Buscabas algo más?</FooterHeading>
+    <ul class="flex flex-col gap-4">
+      <li>
+        <a class="flex items-center gap-4 [&>svg]:w-5"
+          ><Mail />guadalupeymas@gmail.com</a
+        >
+      </li>
+      <li>
+        <a class="flex items-center gap-4 [&>svg]:w-5"
+          ><Phone />222 241 0039
+        </a>
+      </li>
+      <li>
+        <address class="flex items-center gap-4 [&>svg]:w-9">
+          <MapPinned />Insurgentes 12910, Guadalupe Hidalgo, Puebla, Mexico
+        </address>
+      </li>
+    </ul>
+  </div>
+</footer>
