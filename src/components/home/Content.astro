@@ -1,6 +1,9 @@
 ---
 import { announcements } from "./announcement";
 import Announcement from "../Announcement.astro";
+const dateFormatter = new Intl.DateTimeFormat("es-MX", {
+  dateStyle: "medium",
+});
 ---
 
 <div>
@@ -9,5 +12,18 @@ import Announcement from "../Announcement.astro";
   </h3>
   <div class="grid gap-8 grid-cols-(--announcement-cols) justify-center">
     {announcements.map((announcement) => <Announcement {...announcement} />)}
+  </div>
+  <h3 class="font-bold text-3xl font-logo text-center my-10">
+    Santa Misa en Vivo: {dateFormatter.format(new Date())}
+  </h3>
+  <div class="relative">
+    <iframe
+      class="aspect-video"
+      src="https://www.youtube.com/embed/fgjG--ZsuaI?si=mhmBXBo5dUsTiFKO"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen></iframe>
   </div>
 </div>
