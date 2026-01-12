@@ -1,17 +1,17 @@
 ---
 import { Image } from "astro:assets";
 import { Facebook, Mail, MapPinned, Phone, Youtube } from "@lucide/astro";
+import { Icon } from "astro-icon/components";
 import FooterHeading from "./FooterHeading.astro";
-import CircleButton from "./CircleButton";
 // Asset images
 import ewtn from "../assets/logos/ewtn.jpg";
 import teatinos from "../assets/logos/teatinos.jpeg";
 import vatican from "../assets/logos/logo-vatican.png";
+import SocialMediaLink from "./common/SocialMediaLink.astro";
 ---
 
 <footer
-  class="grid grid-cols-[repeat(auto-fit,250px)] md:grid-cols-1
-  gap-2 max-sm:gap-10 max-w-7xl mx-auto px-6 justify-between items-baseline"
+  class="grid grid-cols-3 gap-2 max-sm:gap-10 max-w-7xl mx-auto px-6 justify-between items-baseline"
 >
   {/** Resources */}
   <div>
@@ -20,28 +20,23 @@ import vatican from "../assets/logos/logo-vatican.png";
       Entérate de los avisos parroquiales, cambios de horario y eventos
       especiales al instante.
     </p>
-    <ul class="flex items-center gap-2 mt-4">
-      <li>
-        <CircleButton
-          isExternal
-          bgColor="#1877F2"
-          to="https://www.facebook.com/TeatinosPuebla/?locale=es_LA"
-          type="link"
-        >
-          <Facebook class="fill-white text-transparent" />
-        </CircleButton>
-      </li>
-      <li>
-        <CircleButton
-          isExternal
-          to="https://youtube.com/@teatinospuebla3010?si=FXi7TN1Jp6O0Lz_O"
-          type="link"
-          bgColor="#FF0000"
-        >
-          <Youtube />
-        </CircleButton>
-      </li>
-    </ul>
+    <div class="flex items-center gap-4 mt-4">
+      <SocialMediaLink
+        svgColor="#1877F2"
+        fg="#fff"
+        bg="#1877F2"
+        to="https://www.facebook.com/TeatinosPuebla/?locale=es_LA"
+      >
+        <Facebook />
+      </SocialMediaLink>
+      <SocialMediaLink
+        fg="#fff"
+        bg="#262626"
+        to="https://youtube.com/@teatinospuebla3010?si=FXi7TN1Jp6O0Lz_O"
+      >
+        <Icon name="logos/youtube" />
+      </SocialMediaLink>
+    </div>
   </div>
   <div>
     <FooterHeading>Recursos</FooterHeading>

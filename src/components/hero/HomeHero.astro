@@ -11,6 +11,28 @@ import home_03 from "../../assets/hero/home_03.jpeg";
 <section data-scroll="hero" class="relative h-svh">
   <div class="relative h-svh">
     <ChurchSlider images={[home_01, home_02, home_03]} client:load />
+    <!-- Social media list -->
+    <div
+      class="flex flex-col items-center gap-6 mt-4 absolute top-navbar-y right-10 z-21"
+    >
+      <SocialMediaLink
+        svgColor="#1877F2"
+        fg="#fff"
+        bg="#1877F2"
+        to="https://www.facebook.com/TeatinosPuebla/?locale=es_LA"
+        size="md"
+      >
+        <Facebook />
+      </SocialMediaLink>
+      <SocialMediaLink
+        fg="#fff"
+        bg="#262626"
+        to="https://youtube.com/@teatinospuebla3010?si=FXi7TN1Jp6O0Lz_O"
+        size="md"
+      >
+        <Icon name="logos/youtube" />
+      </SocialMediaLink>
+    </div>
     <div
       class="absolute w-full h-full flex items-center justify-center z-20 top-0 left-0"
     >

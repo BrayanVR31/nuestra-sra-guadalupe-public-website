@@ -4,8 +4,17 @@ interface Props {
   bg: string; // hex. color
   fg: string;
   svgColor?: string;
+  size?: "sm" | "md";
 }
-const { to, bg, fg, svgColor = null } = Astro.props;
+const { to, bg, fg, svgColor = null, size = "sm" } = Astro.props;
+const itemSize = {
+  sm: {
+    linkW: "w-12",
+  },
+  md: {
+    linkW: "w-16",
+  },
+};
 ---
 
 <a
@@ -17,8 +26,8 @@ const { to, bg, fg, svgColor = null } = Astro.props;
     "border-2",
     "border-gray-100",
     "relative",
-    "w-16",
-    "h-16",
+    itemSize[size].linkW,
+    "aspect-square",
     "flex",
     "justify-center",
     "items-center",
