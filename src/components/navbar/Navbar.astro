@@ -1,6 +1,7 @@
 ---
 import MobileNav from "./MobileNav.astro";
 import DesktopNav from "./DesktopNav.astro";
+import Logo from "../Logo.astro";
 ---
 
 <header class="w-full fixed z-50 bg-primary">
@@ -8,7 +9,7 @@ import DesktopNav from "./DesktopNav.astro";
     id="main-navbar"
     class="max-w-7xl h-navbar-y px-6 mx-auto flex items-center justify-between relative"
   >
-    <div>Logo</div>
+    <Logo />
     <DesktopNav />
     <MobileNav />
   </nav>

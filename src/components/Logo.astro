@@ -1,5 +1,5 @@
 ---
-import { Rose, Star } from "@lucide/astro";
+import { Crown, Rose, Star } from "@lucide/astro";
 const hangingStars = [
   { left: "left-[15%]", height: "h-6", size: 14, delay: "0s" },
   { left: "left-[40%]", height: "h-10", size: 20, delay: "0.2s" },
@@ -9,8 +9,9 @@ const hangingStars = [
 ---
 
 <a href="/" class="font-logo flex items-center gap-4 relative text-gray-100">
+  <Crown class="absolute -top-4 right-0 rotate-12 text-amber-200" />
   <Rose
-    class="absolute scale-150 shrink-0 grow-0 left-0 -translate-x-full rotate-y-180"
+    class="absolute scale-150 shrink-0 grow-0 left-0 -translate-x-full rotate-y-180 text-rose-200"
   />
   <p class="flex flex-col items-center">
     <span class="text-2xl font-bold tracking-widest">Parr. Nuestra</span>
@@ -18,7 +19,9 @@ const hangingStars = [
       >Sra. Guadalupe</span
     >
   </p>
-  <Rose class="absolute scale-150 shrink-0 grow-0 right-0 translate-x-full" />
+  <Rose
+    class="absolute scale-150 shrink-0 grow-0 right-0 translate-x-full text-rose-200"
+  />
 
   <div class="absolute top-full left-0 w-full">
     {
@@ -27,10 +30,10 @@ const hangingStars = [
           class={`absolute ${star.left} ${star.height} w-px bg-slate-400 dark:bg-slate-500 flex justify-center`}
         >
           <div
-            class="absolute -bottom-3 transform -translateX-1/2 animate-swing text-yellow-500 fill-current"
+            class="absolute -bottom-3 transform -translateX-1/2 animate-swing text-amber-400 fill-current"
             style={`animation-delay: ${star.delay}`}
           >
-            <Star fill="var(--color-yellow-400)" size={star.size} />
+            <Star fill="var(--color-amber-200)" size={star.size} />
           </div>
         </div>
       ))
