@@ -1,7 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import SchedGrid from "../../components/schedule/SchedGrid.astro";
+import Timeline from "../../components/timeline/Timeline.astro";
 import Hero from "../../components/Hero.astro";
+import { actualWeek } from "../../libs/date";
+import { scheduleList } from "../../constants/horarios";
+import HorariosMisa from "../../assets/horarios_02.jpeg";
+const weeks = actualWeek(new Date());
 ---
 
 <BaseLayout title="horarios">
@@ -19,8 +24,30 @@ import Hero from "../../components/Hero.astro";
       </h2>
     </div>
     {/** Schedule */}
-    <div class="border border-gray-500 grid grid-cols-3 mt-6 mb-14">
-      <SchedGrid />
-    </div>
+    <section class="min-h-svh flex flex-col">
+      <div class="bg-white px-6 py-10 flex gap-8 flex-1 flex-col">
+        <div
+          class="max-w-sm aspect-square rounded-md hover:translate-y-3 overflow-hidden bg-neutral-400 group transition-all duration-300 relative shadow-sm shadow-neutral-500/60"
+        >
+          <div
+            class="bg-neutral-950/55 group-hover:opacity-100 flex flex-col items-center opacity-0 w-full h-full text-white absolute transition-all duration-300 justify-end"
+          >
+            <div class="mt-20 group-hover:mt-0 transition-all duration-300">
+              <h4 class="text-3xl font-bold mb-2">Horarios de misas</h4>
+              <p class="pb-6">Overview</p>
+            </div>
+          </div>
+          <Image
+            class="w-full h-full object-cover"
+            src={HorariosMisa}
+            alt="Horarios misa"
+            inferSize
+          />
+        </div>
+        <div class="flex-1">
+          <Timeline scheduleList={scheduleList} weeks={weeks} />
+        </div>
+      </div>
+    </section>
   </div>
 </BaseLayout>

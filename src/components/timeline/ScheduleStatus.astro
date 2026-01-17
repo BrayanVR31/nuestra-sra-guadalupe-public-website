@@ -1,0 +1,38 @@
+---
+import { getMassStatus } from "../../libs/date";
+
+interface Props {
+  weekDay: Date;
+  scheduleTime: string;
+}
+
+const { scheduleTime, weekDay } = Astro.props;
+const { message, type } = getMassStatus(weekDay, scheduleTime);
+const matchClasses: Record<string, string[]> = {
+  end: ["bg-neutral-100/70", "text-neutral-600", "border-neutral-600/80"],
+  now: ["bg-emerald-100/70", "text-emerald-600", "border-emerald-600/80"],
+  incoming: ["bg-amber-100/70", "text-amber-600", "border-amber-600/80"],
+};
+---
+
+<span
+  class:list={[
+    "border",
+    "px-3",
+    "py-1",
+    "rounded-2xl",
+    "text-xs",
+    "ml-3",
+    matchClasses[type],
+    "relative",
+  ]}
+>
+  {
+    type === "now" && (
+      <div class="absolute w-3 aspect-square rounded-full bg-emerald-100 -top-1/2 translate-y-1/2 right-0 outline-3 outline-white">
+        <div class="w-full h-full rounded-full bg-emerald-600 animate-pulse" />
+      </div>
+    )
+  }
+  {message}
+</span>

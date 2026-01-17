@@ -54,8 +54,22 @@
     }
   }
 
+  @keyframes vertical-loop {
+    from {
+      transform: translateY(0);
+    }
+
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
   --animate-flip: flip 5s linear infinite;
   --flip-height: 1.2em;
+  --vertical-loop: vertical-loop 30s linear infinite;
+
+
+
 }
 
 @utility no-scrollbar {
@@ -121,5 +135,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .animate-vertical-loop {
+    animation: var(--vertical-loop);
   }
 }
