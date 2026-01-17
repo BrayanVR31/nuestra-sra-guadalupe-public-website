@@ -17,8 +17,8 @@ import type { ScheduleWeek } from "../components/timeline/schedule";
  */
 
 const enum SCHEDULE_LABEL {
-  "AM" = "Misa Matutina",
-  "PM" = "Misa Nocturna"
+  "AM" = "Por la mañana",
+  "PM" = "Por la tarde"
 };
 
 export const scheduleList: ScheduleWeek = {

@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+interface Props {
+  image: ImageMetadata;
+  description: string;
+  title: string;
+}
+const { image, description, title } = Astro.props;
+---
+
+<div
+  class="aspect-square rounded-md hover:translate-y-3 overflow-hidden bg-neutral-400 group transition-all duration-300 relative shadow-sm shadow-neutral-500/60"
+>
+  <div
+    class="bg-neutral-950/60 group-hover:opacity-100 flex flex-col items-center opacity-0 w-full h-full text-white absolute transition-all duration-300 justify-end"
+  >
+    <div
+      class="translate-y-16 group-hover:translate-y-0 transition-all duration-300 text-center"
+    >
+      <h4 class="text-3xl font-bold mb-2">{title}</h4>
+      <p class="pb-6 max-w-xs px-4 mx-auto text-sm/6">
+        {description}
+      </p>
+    </div>
+  </div>
+  <Image
+    class="w-full h-full object-cover"
+    src={image}
+    alt="Horarios misa"
+    inferSize
+  />
+</div>

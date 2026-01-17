@@ -18,6 +18,7 @@
   --main-rows: repeat(auto-fit, var(--spacing-card-y));
   --announcement-cols: repeat(auto-fill, minmax(300px, 1fr));
   --announcement-rows: repeat(auto-fill, var(--announcement-auto-row));
+  --schedule-cols: repeat(2, minmax(35%, 450px));
   --font-logo: "Merriweather", sans-serif;
   --font-primary: "Manrope", sans-serif;
   /** Swiper css variables **/
