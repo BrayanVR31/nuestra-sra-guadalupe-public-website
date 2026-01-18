@@ -89,14 +89,10 @@ export function format12h(timeStr: string): string {
  * This function, returns current status of schedule
  */
 export function getMassStatus(weekDay: Date, scheduledTime: string) {
-  const now = new Date(new Date().toLocaleDateString("en-US", {
-    timeZone: "America/Mexico_City",
-  }));
+  const now = new Date();
   const [hours, minutes] = scheduledTime.split(':').map(Number);
 
-  const startTime = new Date(weekDay.toLocaleDateString("en-US", {
-    timeZone: "America/Mexico_City",
-  }));
+  const startTime = new Date(weekDay);
   startTime.setHours(hours, minutes, 0, 0);
 
   const endTime = new Date(startTime);
