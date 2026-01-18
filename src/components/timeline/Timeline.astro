@@ -18,21 +18,31 @@ type Props = {} & (Realtime | Simple);
 const props = Astro.props;
 
 // Formateador de fecha
-const weekFormatter = new Intl.DateTimeFormat("es-MX", {
+const weekFormatter = new Intl.DateTimeFormat("en-US", {
   weekday: "short",
   day: "2-digit",
   month: "short",
   year: "numeric",
+  timeZone: "America/Mexico_City",
 });
 
-const today = new Date().toDateString();
+const dateOptions: Intl.DateTimeFormatOptions = {
+  timeZone: "America/Mexico_City",
+  weekday: "short",
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+};
+
+const today = new Date().toLocaleDateString("en-US", dateOptions);
 ---
 
 <ol class="border-s border-neutral-300 dark:border-neutral-700 ms-4">
   {
     props.type === "realtime" &&
       props.weeks.map((weekDay) => {
-        const isToday = weekDay.toDateString() === today;
+        const isToday =
+          weekDay.toLocaleDateString("en-US", dateOptions) === today;
         const dayIndex = weekDay.getDay();
         const schedules = props.scheduleList[dayIndex] || [];
 
