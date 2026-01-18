@@ -2,6 +2,7 @@
 import type { ScheduleWeek } from "./schedule";
 import { format12h } from "../../libs/date";
 import ScheduleStatus from "./ScheduleStatus.astro";
+import { localZone, formatOptions } from "./constants";
 type Realtime = {
   type: "realtime";
   weeks: Date[];
@@ -17,24 +18,9 @@ type Simple = {
 type Props = {} & (Realtime | Simple);
 const props = Astro.props;
 
-// Formateador de fecha
-const weekFormatter = new Intl.DateTimeFormat("en-US", {
-  weekday: "short",
-  day: "2-digit",
-  month: "short",
-  year: "numeric",
-  timeZone: "America/Mexico_City",
-});
-
-const dateOptions: Intl.DateTimeFormatOptions = {
-  timeZone: "America/Mexico_City",
-  weekday: "short",
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-};
-
-const today = new Date().toLocaleDateString("en-US", dateOptions);
+// Date formatter
+const dateFormatter = new Intl.DateTimeFormat(localZone, formatOptions);
+const today = new Date();
 ---
 
 <ol class="border-s border-neutral-300 dark:border-neutral-700 ms-4">
@@ -42,7 +28,7 @@ const today = new Date().toLocaleDateString("en-US", dateOptions);
     props.type === "realtime" &&
       props.weeks.map((weekDay) => {
         const isToday =
-          weekDay.toLocaleDateString("en-US", dateOptions) === today;
+          dateFormatter.format(weekDay) === dateFormatter.format(today);
         const dayIndex = weekDay.getDay();
         const schedules = props.scheduleList[dayIndex] || [];
 
@@ -66,7 +52,7 @@ const today = new Date().toLocaleDateString("en-US", dateOptions);
                     : "text-neutral-600 dark:text-neutral-400",
                 ]}
               >
-                {weekFormatter.format(weekDay)}
+                {dateFormatter.format(weekDay)}
               </time>
             </div>
 
