@@ -1,7 +1,17 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import SchedGrid from "../../components/schedule/SchedGrid.astro";
+import Timeline from "../../components/timeline/Timeline.astro";
+import ScheduleCard from "../../components/timeline/ScheduleCard.astro";
 import Hero from "../../components/Hero.astro";
+import { actualWeek } from "../../libs/date";
+import { scheduleList } from "../../constants/horarios";
+import HorariosMisa from "../../assets/horarios_02.jpeg";
+import HorariosOficina from "../../assets/oficinas.jpg";
+import HorariosHoraSanta from "../../assets/hora_santa.webp";
+import HorariosConfesiones from "../../assets/confesiones.jpeg";
+import ScheduleLayout from "../../layouts/ScheduleLayout.astro";
+const weeks = actualWeek(new Date());
 ---
 
 <BaseLayout title="horarios">
@@ -10,17 +20,81 @@ import Hero from "../../components/Hero.astro";
     description="Consulta nuestros horarios de misas, confesiones y adoración."
     image="/hero/horarios.jpg"
   />
-  <div id="main-content" class="min-h-hero-y max-w-7xl mx-auto">
+  <div class="min-h-hero-y max-w-7xl mx-auto">
     <div class="text-center">
       <h2
-        class="font-extrabold relative text-center text-4xl mt-14 mb-8 before:content-[''] before:absolute before:-bottom-8 mx-auto before:w-1/3 inline-flex before:h-1.5 before:bg-link before:left-1/2 before:-translate-x-1/2"
+        class="font-extrabold relative text-center text-4xl mt-14 mb-14 before:content-[''] before:absolute before:-bottom-8 mx-auto before:w-1/3 inline-flex before:h-1.5 before:bg-link before:left-1/2 before:-translate-x-1/2"
       >
         Tiempo para dios
       </h2>
     </div>
     {/** Schedule */}
-    <div class="border border-gray-500 grid grid-cols-3 mt-6 mb-14">
-      <SchedGrid />
-    </div>
+    <section class="min-h-svh w-full flex flex-col">
+      <div
+        class="bg-white px-6 py-10 grid max-md:grid-cols-1 grid-cols-(--schedule-cols) place-content-around gap-16 flex-1"
+      >
+        {/**  Item 1 */}
+        <ScheduleLayout title="Celebración Eucarística">
+          <ScheduleCard
+            image={HorariosMisa}
+            description="Un espacio de encuentro y oración para nuestra comunidad."
+            title="Horarios de misas"
+            slot="card"
+          />
+          <Timeline
+            type="realtime"
+            slot="timeline"
+            scheduleList={scheduleList}
+            weeks={weeks}
+          />
+        </ScheduleLayout>
+        {/**  Item 2 */}
+        <div class="flex flex-col gap-4">
+          <ScheduleLayout title="Oficinas">
+            <ScheduleCard
+              image={HorariosOficina}
+              description="Consulta aquí los horarios de atención en Secretaría Parroquial."
+              title="Atención parroquial y trámites"
+              slot="card"
+            />
+            <Timeline
+              type="simple"
+              slot="timeline"
+              schedules={[
+                { time: "Lunes a sábados", tags: ["07:00 AM a 08:00 PM"] },
+              ]}
+            />
+          </ScheduleLayout>
+          <ScheduleLayout title="Hora Santa">
+            <ScheduleCard
+              image={HorariosHoraSanta}
+              description="Un momento de silencio y adoración frente al Santísimo."
+              title="Hora Santa"
+              slot="card"
+            />
+            <Timeline
+              type="simple"
+              slot="timeline"
+              schedules={[{ time: "Todos los jueves", tags: ["07:30 PM"] }]}
+            />
+          </ScheduleLayout>
+          <ScheduleLayout title="Confesiones">
+            <ScheduleCard
+              image={HorariosConfesiones}
+              description="Un espacio de escucha y perdón para sanar el corazón y renovar tu camino de fe."
+              title="Confesiones"
+              slot="card"
+            />
+            <Timeline
+              type="simple"
+              slot="timeline"
+              schedules={[
+                { time: "Todos los días", tags: ["Al finalizar la misa."] },
+              ]}
+            />
+          </ScheduleLayout>
+        </div>
+      </div>
+    </section>
   </div>
 </BaseLayout>

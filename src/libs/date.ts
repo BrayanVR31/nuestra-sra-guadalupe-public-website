@@ -52,3 +52,56 @@ export const transformRelativeTime = (datetime: Date) => {
   if (!timeUnit) return relativeFormatter.format(TIME_UNITS[TIME_UNITS.length - 1].value, "year");
   return relativeFormatter.format(timeUnit.value, timeUnit.unit);
 }
+
+/***
+ * This function returns an array of dates
+ * belonging by day reference
+ */
+export const actualWeek = (currentDate: Date) => {
+  const weekDate = new Date(currentDate);
+  weekDate.setHours(0, 0, 0, 0);
+  const weekDay = weekDate.getDay();
+  const weekDifference = (weekDate.getDate() - weekDay) + (weekDay === 0 ? -6 : 1);
+  const startMonday = new Date(weekDate.setDate(weekDifference));
+
+  const weeks = [...new Array(7)].map(((_, index) => {
+    const day = new Date(startMonday);
+    day.setDate(startMonday.getDate() + index);
+    return day;
+  }))
+  return weeks;
+};
+
+/**
+ * This function converts into am or pm format,
+ * receives HH:mm format
+ */
+export function format12h(timeStr: string): string {
+  const [hours, minutes] = timeStr.split(':').map(Number);
+  const suffix = hours >= 12 ? 'PM' : 'AM';
+  const adjustedHour = hours % 12 || 12;
+  const strHour = adjustedHour.toString().padStart(2, '0');
+  const strMin = minutes.toString().padStart(2, '0');
+  return `${strHour}:${strMin} ${suffix}`;
+}
+
+/***
+ * This function, returns current status of schedule
+ */
+export function getMassStatus(weekDay: Date, scheduledTime: string) {
+  const now = new Date();
+  const [hours, minutes] = scheduledTime.split(':').map(Number);
+
+  const startTime = new Date(weekDay);
+  startTime.setHours(hours, minutes, 0, 0);
+
+  const endTime = new Date(startTime);
+  endTime.setHours(startTime.getHours() + 1); // Duración estimada: 1h
+
+  if (now > endTime) return {
+    type: "end",
+    message: "Finalizó"
+  };
+  if (now >= startTime && now <= endTime) return { type: "now", message: "Se está celebrando" };
+  return { type: "incoming", message: "Próxima" };
+}

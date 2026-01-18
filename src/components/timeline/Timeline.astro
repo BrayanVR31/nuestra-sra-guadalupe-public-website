@@ -1,0 +1,118 @@
+---
+import type { ScheduleWeek } from "./schedule";
+import { format12h } from "../../libs/date";
+import ScheduleStatus from "./ScheduleStatus.astro";
+type Realtime = {
+  type: "realtime";
+  weeks: Date[];
+  scheduleList: ScheduleWeek;
+};
+type Simple = {
+  type: "simple";
+  schedules: {
+    time: string;
+    tags: string[];
+  }[];
+};
+type Props = {} & (Realtime | Simple);
+const props = Astro.props;
+
+// Formateador de fecha
+const weekFormatter = new Intl.DateTimeFormat("es-MX", {
+  weekday: "short",
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+});
+
+const today = new Date().toDateString();
+---
+
+<ol class="border-s border-neutral-300 dark:border-neutral-700 ms-4">
+  {
+    props.type === "realtime" &&
+      props.weeks.map((weekDay) => {
+        const isToday = weekDay.toDateString() === today;
+        const dayIndex = weekDay.getDay();
+        const schedules = props.scheduleList[dayIndex] || [];
+
+        return (
+          <li class="relative pb-10">
+            {/* Cabecera del día con el círculo */}
+            <div class="flex items-center pt-8">
+              <div
+                class:list={[
+                  "-ms-[7.5px] me-3 h-3.5 w-3.5 rounded-full outline-4 outline-white dark:outline-neutral-900 border-2 transition-colors",
+                  isToday
+                    ? "bg-blue-600 border-white ring-4 ring-blue-100 dark:ring-blue-900/20"
+                    : "bg-neutral-400 dark:bg-neutral-500 border-neutral-200 dark:border-neutral-800",
+                ]}
+              />
+              <time
+                class:list={[
+                  "capitalize text-sm font-medium tracking-tight",
+                  isToday
+                    ? "text-blue-700 dark:text-blue-400 font-bold"
+                    : "text-neutral-600 dark:text-neutral-400",
+                ]}
+              >
+                {weekFormatter.format(weekDay)}
+              </time>
+            </div>
+
+            {/* Listado de horarios alineado con el texto de la fecha */}
+            <div class="ms-6 mt-3 flex flex-col gap-3">
+              {schedules.map((item) => (
+                <div class="flex items-center gap-4 group">
+                  <span class="text-xs font-bold tabular-nums text-neutral-500 dark:text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
+                    {format12h(item.time)}
+                  </span>
+                  <div class="flex flex-col">
+                    <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
+                      {item.label}
+                      <ScheduleStatus
+                        weekDay={weekDay}
+                        scheduleTime={item.time}
+                      />
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </li>
+        );
+      })
+  }
+  {
+    props.type === "simple" &&
+      props.schedules.map(({ time, tags }) => (
+        <li class="relative pb-10">
+          <div class="flex items-center pt-8">
+            <div
+              class:list={[
+                "-ms-[7.5px] me-3 h-3.5 w-3.5 rounded-full outline-4 outline-white dark:outline-neutral-900 border-2 transition-colors",
+                "bg-neutral-400 dark:bg-neutral-500 border-neutral-200 dark:border-neutral-800",
+              ]}
+            />
+            <time
+              class:list={[
+                "capitalize text-sm font-medium tracking-tight",
+                "text-neutral-600 dark:text-neutral-400",
+              ]}
+            >
+              {time}
+            </time>
+          </div>
+          <div class="ms-6 mt-3 flex flex-col gap-3">
+            {tags.map((tag) => (
+              <div class="flex items-center gap-4 group">
+                <span class="text-xs font-bold tabular-nums text-neutral-500 dark:text-neutral-500 bg-neutral-100 dark:bg-neutral-800 px-2 py-1 rounded">
+                  {tag}
+                </span>
+              </div>
+            ))}
+          </div>
+        </li>
+      ))
+  }
+</ol>
