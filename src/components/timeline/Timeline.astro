@@ -29,7 +29,11 @@ const today = new Date();
       props.weeks.map((weekDay) => {
         const isToday =
           dateFormatter.format(weekDay) === dateFormatter.format(today);
-        const dayIndex = weekDay.getDay();
+        const dayIndex = new Date(
+          weekDay.toLocaleDateString("en-US", {
+            timeZone: "America/Mexico_City",
+          }),
+        ).getDay();
         const schedules = props.scheduleList[dayIndex] || [];
 
         return (
