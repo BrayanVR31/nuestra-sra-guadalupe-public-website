@@ -1,13 +1,23 @@
 ---
-import { getMassStatus } from "../../libs/date";
+import { timeBootstrap, type StatusLabels } from "../../libs/easy-time";
 
 interface Props {
-  weekDay: Date;
+  weekDay: string;
   scheduleTime: string;
 }
 
 const { scheduleTime, weekDay } = Astro.props;
-const { message, type } = getMassStatus(weekDay, scheduleTime);
+const { matchScheduleStatus } = timeBootstrap();
+const defaultLabels: StatusLabels = {
+  incoming: "Próximamente",
+  end: "Ha finalizado",
+  now: "Se está celebrando",
+};
+const { type, message } = matchScheduleStatus(
+  weekDay,
+  scheduleTime,
+  defaultLabels,
+);
 const matchClasses: Record<string, string[]> = {
   end: ["bg-neutral-100/70", "text-neutral-600", "border-neutral-600/80"],
   now: ["bg-emerald-100/70", "text-emerald-600", "border-emerald-600/80"],

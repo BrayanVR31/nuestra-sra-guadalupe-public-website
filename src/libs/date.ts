@@ -1,3 +1,10 @@
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'
+import timezone from 'dayjs/plugin/timezone'
+dayjs.extend(utc);
+dayjs.extend(timezone);
+dayjs.tz.setDefault("America/Mexico_City");
+
 type TimeUnit = {
   threshold: number;
   value: number;
@@ -89,7 +96,11 @@ export function format12h(timeStr: string): string {
  * This function, returns current status of schedule
  */
 export function getMassStatus(weekDay: Date, scheduledTime: string) {
+<<<<<<< HEAD
   const now = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Mexico_City" }));
+=======
+  const now = dayjs().toDate();
+>>>>>>> timeline
   const [hours, minutes] = scheduledTime.split(':').map(Number);
   console.log({ hours, minutes })
 

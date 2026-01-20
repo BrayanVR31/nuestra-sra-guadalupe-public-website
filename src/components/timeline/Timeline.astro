@@ -1,11 +1,11 @@
 ---
+import { timeBootstrap } from "../../libs/easy-time";
 import type { ScheduleWeek } from "./schedule";
 import { format12h } from "../../libs/date";
 import ScheduleStatus from "./ScheduleStatus.astro";
 import { localZone, formatOptions } from "./constants";
 type Realtime = {
   type: "realtime";
-  weeks: Date[];
   scheduleList: ScheduleWeek;
 };
 type Simple = {
@@ -17,24 +17,32 @@ type Simple = {
 };
 type Props = {} & (Realtime | Simple);
 const props = Astro.props;
+const { matchWeek, now } = timeBootstrap();
+const weeks = matchWeek(now);
 
-// Date formatter
-const dateFormatter = new Intl.DateTimeFormat(localZone, formatOptions);
-const today = new Date();
+// Formateador de fecha
+const weekFormatter = new Intl.DateTimeFormat("en-US", {
+  weekday: "short",
+  day: "2-digit",
+  month: "short",
+  year: "numeric",
+  timeZone: "America/Mexico_City",
+});
+
+const dateOptions: Intl.DateTimeFormatOptions = {
+  timeZone: "America/Mexico_City",
+  weekday: "short",
+  year: "numeric",
+  month: "short",
+  day: "numeric",
+};
 ---
 
 <ol class="border-s border-neutral-300 dark:border-neutral-700 ms-4">
   {
     props.type === "realtime" &&
-      props.weeks.map((weekDay) => {
-        const isToday =
-          dateFormatter.format(weekDay) === dateFormatter.format(today);
-        const dayIndex = new Date(
-          weekDay.toLocaleDateString("en-US", {
-            timeZone: "America/Mexico_City",
-          }),
-        ).getDay();
-        const schedules = props.scheduleList[dayIndex] || [];
+      weeks.map(({ day, isToday, human, formatDate }) => {
+        const schedules = props.scheduleList[day] || [];
 
         return (
           <li class="relative pb-10">
@@ -56,7 +64,7 @@ const today = new Date();
                     : "text-neutral-600 dark:text-neutral-400",
                 ]}
               >
-                {dateFormatter.format(weekDay)}
+                {human}
               </time>
             </div>
 
@@ -71,13 +79,7 @@ const today = new Date();
                     <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                       {item.label}
                       <ScheduleStatus
-                        weekDay={
-                          new Date(
-                            weekDay.toLocaleDateString("en-US", {
-                              timeZone: "America/Mexico_City",
-                            }),
-                          )
-                        }
+                        weekDay={formatDate}
                         scheduleTime={item.time}
                       />
                     </span>
