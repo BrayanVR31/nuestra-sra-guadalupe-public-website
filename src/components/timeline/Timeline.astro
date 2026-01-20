@@ -1,10 +1,10 @@
 ---
+import { timeBootstrap } from "../../libs/easy-time";
 import type { ScheduleWeek } from "./schedule";
 import { format12h } from "../../libs/date";
 import ScheduleStatus from "./ScheduleStatus.astro";
 type Realtime = {
   type: "realtime";
-  weeks: Date[];
   scheduleList: ScheduleWeek;
 };
 type Simple = {
@@ -16,6 +16,8 @@ type Simple = {
 };
 type Props = {} & (Realtime | Simple);
 const props = Astro.props;
+const { matchWeek, now } = timeBootstrap();
+const weeks = matchWeek(now);
 
 // Formateador de fecha
 const weekFormatter = new Intl.DateTimeFormat("en-US", {
@@ -33,18 +35,13 @@ const dateOptions: Intl.DateTimeFormatOptions = {
   month: "short",
   day: "numeric",
 };
-
-const today = new Date().toLocaleDateString("en-US", dateOptions);
 ---
 
 <ol class="border-s border-neutral-300 dark:border-neutral-700 ms-4">
   {
     props.type === "realtime" &&
-      props.weeks.map((weekDay) => {
-        const isToday =
-          weekDay.toLocaleDateString("en-US", dateOptions) === today;
-        const dayIndex = weekDay.getDay();
-        const schedules = props.scheduleList[dayIndex] || [];
+      weeks.map(({ day, isToday, human, formatDate }) => {
+        const schedules = props.scheduleList[day] || [];
 
         return (
           <li class="relative pb-10">
@@ -66,7 +63,7 @@ const today = new Date().toLocaleDateString("en-US", dateOptions);
                     : "text-neutral-600 dark:text-neutral-400",
                 ]}
               >
-                {weekFormatter.format(weekDay)}
+                {human}
               </time>
             </div>
 
@@ -81,7 +78,7 @@ const today = new Date().toLocaleDateString("en-US", dateOptions);
                     <span class="text-sm font-medium text-neutral-700 dark:text-neutral-300">
                       {item.label}
                       <ScheduleStatus
-                        weekDay={weekDay}
+                        weekDay={formatDate}
                         scheduleTime={item.time}
                       />
                     </span>
