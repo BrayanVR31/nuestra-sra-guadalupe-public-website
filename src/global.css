@@ -48,7 +48,6 @@
   }
 
   @keyframes flip {
-
     0%,
     45% {
       transform: translateY(0);
@@ -77,9 +76,6 @@
   --animate-flip: flip 5s linear infinite;
   --flip-height: 1.2em;
   --vertical-loop: vertical-loop 30s linear infinite;
-
-
-
 }
 
 @utility no-scrollbar {
@@ -121,9 +117,11 @@
 
 @utility mask-fade-bottom {
   mask-image: linear-gradient(to bottom, black var(--mask-stop), transparent);
-  -webkit-mask-image: linear-gradient(to bottom,
-      black var(--mask-stop),
-      transparent);
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black var(--mask-stop),
+    transparent
+  );
 }
 
 @layer components {
@@ -140,7 +138,7 @@
     animation: var(--animate-flip);
   }
 
-  .stack>* {
+  .stack > * {
     padding: 0 calc(var(--spacing) * 3);
     white-space: nowrap;
     height: var(--flip-height);
@@ -152,4 +150,8 @@
   .animate-vertical-loop {
     animation: var(--vertical-loop);
   }
+}
+
+.leaflet-control-container .leaflet-routing-container {
+  display: none;
 }
