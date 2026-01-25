@@ -1,57 +1,49 @@
 ---
 import { SendHorizontal } from "@lucide/astro";
+import Field from "../../components/common/input/Field.astro";
+import Label from "../../components/common/input/Label.astro";
+import Error from "../../components/common/input/Error.astro";
 ---
 
-<form>
-  {/** Name field */}
-  <div class="flex flex-col-reverse relative mb-6">
-    <input
-      placeholder="Escribe tu nombre completo"
-      class="border bg-white peer border-neutral-700 px-6 py-3 rounded-sm transition-all duration-200 placeholder:opacity-0 focus:placeholder:opacity-100 focus:outline-primary text-sm"
-      id="name"
-    />
-    <label
-      class="transition-all duration-300 absolute peer-placeholder-shown:top-3 peer-placeholder-shown:scale-90 top-3 left-4 peer-focus:-top-3 peer-focus:scale-90 bg-white peer-focus:cursor-default cursor-text peer-focus:text-primary peer-focus:font-bold px-2 text-neutral-700 not-placeholder-shown:-top-3 not-placeholder-shown:scale-90"
-      for="name">Nombre</label
-    >
-  </div>
-  {/** Email field */}
-  <div class="flex flex-col-reverse relative mb-6">
-    <input
-      placeholder="email@dominio.com"
-      class="border bg-white peer border-neutral-700 px-6 py-3 rounded-sm transition-all duration-200 placeholder:opacity-0 focus:placeholder:opacity-100 focus:outline-primary text-sm"
-      id="email"
-      type="email"
-    />
-    <label
-      class="transition-all duration-300 absolute peer-placeholder-shown:top-3 peer-placeholder-shown:scale-90 top-3 left-4 peer-focus:-top-3 peer-focus:scale-90 bg-white peer-focus:cursor-default cursor-text peer-focus:text-primary peer-focus:font-bold px-2 text-neutral-700 not-placeholder-shown:-top-3 not-placeholder-shown:scale-90"
-      for="email">Email</label
-    >
-  </div>
-  {/** Subject field */}
-  <div class="flex flex-col-reverse relative mb-6">
-    <input
-      placeholder="Escribe el asunto del mensaje"
-      class="border bg-white peer border-neutral-700 px-6 py-3 rounded-sm transition-all duration-200 placeholder:opacity-0 focus:placeholder:opacity-100 focus:outline-primary text-sm"
-      id="subject"
-    />
-    <label
-      class="transition-all duration-300 absolute peer-placeholder-shown:top-3 peer-placeholder-shown:scale-90 top-3 left-4 peer-focus:-top-3 peer-focus:scale-90 bg-white peer-focus:cursor-default cursor-text peer-focus:text-primary peer-focus:font-bold px-2 text-neutral-700 not-placeholder-shown:-top-3 not-placeholder-shown:scale-90"
-      for="subject">Asunto</label
-    >
-  </div>
-  {/** Message field */}
-  <div class="flex flex-col-reverse relative">
-    <textarea
-      placeholder="Escribe tu mensaje"
-      class="border bg-white peer border-neutral-700 px-6 py-3 rounded-sm transition-all duration-200 placeholder:opacity-0 focus:placeholder:opacity-100 focus:outline-primary text-sm"
-      id="message"
-      rows="5"></textarea>
-    <label
-      class="transition-all duration-300 absolute peer-placeholder-shown:top-3 peer-placeholder-shown:scale-90 top-3 left-4 peer-focus:-top-3 peer-focus:scale-90 bg-white peer-focus:cursor-default cursor-text peer-focus:text-primary peer-focus:font-bold px-2 text-neutral-700 not-placeholder-shown:-top-3 not-placeholder-shown:scale-90"
-      for="message">Mensaje</label
-    >
-  </div>
+<form id="contact-form">
+  <Field
+    withContainer
+    id="name"
+    name="name"
+    placeholder="Escribe tu nombre completo"
+  >
+    <Label for="name" slot="after-input">Nombre</Label>
+    <Error slot="last-item" />
+  </Field>
+
+  <Field withContainer name="email" id="email" placeholder="email@dominio.com">
+    <Label for="email" slot="after-input">Email</Label>
+    <Error slot="last-item" />
+  </Field>
+
+  <Field
+    withContainer
+    name="subject"
+    id="subject"
+    placeholder="Escribe el asunto del mensaje"
+  >
+    <Label for="subject" slot="after-input">Asunto</Label>
+    <Error slot="last-item" />
+  </Field>
+
+  <Field
+    withContainer
+    id="message"
+    variant="textarea"
+    name="message"
+    rows="5"
+    style="resize: none;"
+    placeholder="Escribe tu mensaje"
+  >
+    <Label for="message" slot="after-input">Mensaje</Label>
+    <Error slot="last-item" />
+  </Field>
+
   <button
     class="bg-primary hover:bg-primary/80 transition-all duration-300 text-white w-full p-4 rounded-sm mt-10 cursor-pointer flex items-center justify-center gap-4"
     type="submit"
@@ -59,3 +51,33 @@ import { SendHorizontal } from "@lucide/astro";
     <SendHorizontal />Enviar mensaje
   </button>
 </form>
+
+<script>
+  import { actions, isInputError } from "astro:actions";
+  import {
+    handleFormSubmission,
+    handleErrors,
+  } from "../../libs/form-validation";
+  type InputFields = {
+    name: string;
+    email: string;
+    message: string;
+    subject: string;
+  };
+
+  handleFormSubmission<InputFields>(
+    document.querySelector("#contact-form"),
+    async (_, inputs) => {
+      const { error } = await actions.sendSuggestion(inputs);
+      const { cleanUpErrors, managerErrors } = handleErrors(
+        Object.keys(inputs),
+        "~ [data-field-error]",
+      );
+      if (isInputError(error)) {
+        managerErrors(error);
+      } else {
+        cleanUpErrors();
+      }
+    },
+  );
+</script>

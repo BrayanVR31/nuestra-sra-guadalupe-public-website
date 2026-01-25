@@ -1,0 +1,15 @@
+---
+type Props = {
+  initialView?: "open" | "close";
+};
+const { initialView = "close" } = Astro.props;
+const dataAttr = initialView === "open" ? { "data-error": "" } : {};
+---
+
+<p
+  data-field-error
+  {...dataAttr}
+  class="absolute text-red-500 text-xs -bottom-6 left-0"
+>
+  {initialView === "open" && <slot />}
+</p>

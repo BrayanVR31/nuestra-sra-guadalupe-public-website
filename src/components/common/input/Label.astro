@@ -1,0 +1,44 @@
+---
+// Default label classes
+const defaultClassNames = {
+  common: [
+    "transition-all",
+    "duration-300",
+    "absolute",
+    "peer-placeholder-shown:top-3",
+    "peer-placeholder-shown:scale-90",
+    "top-3",
+    "left-4",
+    "peer-focus:-top-3",
+    "peer-focus:scale-90",
+    "bg-white",
+    "peer-focus:cursor-default",
+    "cursor-text",
+    "peer-focus:font-bold",
+    "px-2",
+    "text-neutral-700",
+    "not-placeholder-shown:-top-3",
+    "not-placeholder-shown:scale-90",
+  ],
+  success: ["peer-focus:text-primary"],
+  error: [
+    "group-has-data-error/input-container:text-red-500",
+    "group-has-data-error/input-container:bg-red-50",
+    "group-has-data-error/input-container:peer-focus:text-red-500",
+  ],
+};
+
+type Props = {} & astroHTML.JSX.LabelHTMLAttributes;
+const { ...anotherProps } = Astro.props;
+---
+
+<label
+  class:list={[
+    defaultClassNames.common,
+    defaultClassNames.error,
+    defaultClassNames.success,
+  ]}
+  {...anotherProps}
+>
+  <slot />
+</label>

@@ -1,0 +1,64 @@
+---
+type WithContainer = {
+  withContainer?: true;
+};
+type WithoutContainer = {
+  withContainer?: false;
+};
+
+// Match each type of tag & returns corresponding attributes
+type FieldVariant =
+  | ({ variant?: "input" } & astroHTML.JSX.InputHTMLAttributes)
+  | ({ variant?: "textarea" } & astroHTML.JSX.TextareaHTMLAttributes);
+
+type Props = FieldVariant & (WithContainer | WithoutContainer);
+
+const {
+  variant: InputVariant = "input",
+  withContainer = false,
+  ...otherProps
+} = Astro.props;
+// Default input classes
+const defaultClassNames = {
+  error: [
+    "group-has-data-error/input-container:focus:outline-red-500",
+    "group-has-data-error/input-container:border-red-500",
+    "group-has-data-error/input-container:bg-red-50",
+    "group-has-data-error/input-container:text-red-800",
+  ],
+  common: [
+    "border",
+    "bg-white",
+    "peer",
+    "px-6",
+    "py-3",
+    "rounded-sm",
+    "transition-all",
+    "duration-200",
+    "placeholder:opacity-0",
+    "focus:placeholder:opacity-100",
+    "focus:outline-primary",
+    "text-sm",
+    "border-neutral-400",
+    "outline-transparent",
+  ],
+};
+// Input Wrapper
+const InputContainer = withContainer ? "div" : Fragment;
+const containerProps = withContainer
+  ? {
+      class:
+        "flex flex-col-reverse relative mb-6 group/input-container has-data-error:mb-12",
+    }
+  : {};
+---
+
+<InputContainer {...containerProps}>
+  <InputVariant
+    class:list={[defaultClassNames.common, defaultClassNames.error]}
+    autocomplete="on"
+    {...otherProps}
+  />
+  <slot name="after-input" />
+  <slot name="last-item" />
+</InputContainer>
