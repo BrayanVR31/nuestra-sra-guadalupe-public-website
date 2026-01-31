@@ -1,0 +1,56 @@
+---
+// src/components/ServiceCard.astro
+interface Props {
+  title: string;
+  items: { text: string; subtext?: string }[];
+  extraInfo?: string[];
+  footerInfo?: { label: string; value: string }[];
+  price?: string;
+  note?: string;
+}
+
+const { title, items, extraInfo, footerInfo, price, note } = Astro.props;
+---
+
+<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col h-full font-primary">
+  <h3 class="text-2xl font-bold text-[#006957] mb-4 border-b pb-2">{title}</h3>
+  
+  <div class="flex-grow space-y-4">
+    <ul class="space-y-3">
+      {items.map((item) => (
+        <li class="text-sm">
+          <div class="flex items-start gap-2 text-gray-700">
+            <span class="text-[#006957] font-bold">✔</span> 
+            <span>{item.text}</span>
+          </div>
+          {item.subtext && <p class="text-xs italic text-red-600 ml-6 mt-1">{item.subtext}</p>}
+        </li>
+      ))}
+    </ul>
+
+    {extraInfo && (
+      <div class="bg-gray-50 p-3 rounded-lg text-xs text-gray-600 space-y-1">
+        {extraInfo.map((info) => <p>• {info}</p>)}
+      </div>
+    )}
+  </div>
+
+  {footerInfo && (
+    <div class="mt-4 pt-4 border-t border-gray-100 text-sm">
+      {footerInfo.map((f) => (
+        <div class="flex justify-between font-bold text-[#006957]">
+          <span>{f.label}:</span> <span>{f.value}</span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  
+
+  {note && (
+    <p class="mt-4 text-[11px] italic text-red-600 font-bold leading-tight uppercase">
+      *{note}
+    </p>
+  )}
+
+</div>
