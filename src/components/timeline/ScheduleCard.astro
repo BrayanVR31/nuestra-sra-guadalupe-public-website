@@ -15,9 +15,9 @@ const { image, description, title } = Astro.props;
     class="bg-neutral-950/60 group-hover:opacity-100 flex flex-col items-center opacity-0 w-full h-full text-white absolute transition-all duration-300 justify-end"
   >
     <div
-      class="translate-y-16 group-hover:translate-y-0 transition-all duration-300 text-center"
+      class="translate-y-16 group-hover:translate-y-0 transition-all duration-300 text-center px-4"
     >
-      <h4 class="text-3xl font-bold mb-2">{title}</h4>
+      <h4 class="text-3xl font-bold mb-2 max-sm:text-2xl">{title}</h4>
       <p class="pb-6 max-w-xs px-4 mx-auto text-sm/6">
         {description}
       </p>

@@ -10,9 +10,11 @@ const { to, bg, fg, svgColor = null, size = "sm" } = Astro.props;
 const itemSize = {
   sm: {
     linkW: "w-12",
+    mobileW: "w-6",
   },
   md: {
     linkW: "w-16",
+    mobileW: "w-8",
   },
 };
 ---
@@ -27,6 +29,7 @@ const itemSize = {
     "border-gray-100",
     "relative",
     itemSize[size].linkW,
+    "max-sm:w-12",
     "aspect-square",
     "flex",
     "justify-center",
@@ -51,6 +54,8 @@ const itemSize = {
     "**:text-transparent",
     svgColor ? "**:fill-(--svgColor)" : "",
     svgColor ? "hover:**:fill-(--fg)" : "",
+    "shrink-0",
+    "min-w-0",
   ]}
   href={to}
   target="_blank"
@@ -60,6 +65,10 @@ const itemSize = {
 </a>
 
 <style define:vars={{ bg, fg, svgColor }}>
+  a {
+    z-index: 1;
+  }
+
   a::before {
     background-color: var(--bg);
   }

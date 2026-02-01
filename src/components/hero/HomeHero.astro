@@ -8,12 +8,13 @@ import home_02 from "../../assets/hero/home_02.jpeg";
 import home_03 from "../../assets/hero/home_03.jpeg";
 ---
 
-<section data-scroll="hero" class="relative h-svh">
+<section data-scroll="hero" class="relative h-svh bg-blue-400">
   <div class="relative h-svh">
     <ChurchSlider images={[home_01, home_02, home_03]} client:load />
     <!-- Social media list -->
+    <!-- flex flex-col items-center gap-6 mt-4 absolute top-navbar-y right-10 z-21 -->
     <div
-      class="flex flex-col items-center gap-6 mt-4 absolute top-navbar-y right-10 z-21"
+      class="flex wrap gap-4 w-max -mt-44 mx-auto md:flex-col md:absolute md:top-[calc(var(--spacing-navbar-y)+12px)] md:right-16 md:mt-0"
     >
       <SocialMediaLink
         svgColor="#1877F2"
@@ -33,15 +34,16 @@ import home_03 from "../../assets/hero/home_03.jpeg";
         <Icon name="logos/youtube" />
       </SocialMediaLink>
     </div>
+    <!--  absolute w-full h-full flex items-center justify-center z-20 top-0 left-0 max-sm:h-auto max-sm:bottom-0 bg-blue-600 -->
     <div
-      class="absolute w-full h-full flex items-center justify-center z-20 top-0 left-0"
+      class="absolute bottom-52 md:left-1/2 md:-translate-x-1/2 md:top-1/2 md:-translate-y-1/2 z-1"
     >
       <h1
-        class="text-6xl grow-0 shrink-0 font-extrabold text-white max-w-4xl text-center flex justify-center items-center gap-2.5 flex-col"
+        class="text-6xl max-md:text-2xl max-md:ml-3 grow-0 shrink-0 font-extrabold text-white max-w-4xl text-center flex justify-center max-sm:items-start items-center gap-2.5 flex-col"
       >
-        Bienvenidos a la Parroquia
+        <span class="max-md:text-4xl/12">Bienvenidos a la Parroquia</span>
         <!-- Container -->
-        <span class="flip">
+        <span class="flip max-md:mx-auto">
           <span class="stack">
             <!-- Item -->
             <span class="bg-red-500">Nuestra Sra.</span>
@@ -54,23 +56,6 @@ import home_03 from "../../assets/hero/home_03.jpeg";
       </h1>
     </div>
   </div>
-  <div class="flex flex-col absolute right-16 top-6 z-50 gap-4 hidden">
-    <SocialMediaLink
-      svgColor="#1877F2"
-      fg="#fff"
-      bg="#1877F2"
-      to="https://www.facebook.com/TeatinosPuebla/?locale=es_LA"
-    >
-      <Facebook />
-    </SocialMediaLink>
-    <SocialMediaLink
-      fg="#fff"
-      bg="#262626"
-      to="https://youtube.com/@teatinospuebla3010?si=FXi7TN1Jp6O0Lz_O"
-    >
-      <Icon name="logos/youtube" />
-    </SocialMediaLink>
-  </div>
   <p
     class="text-link items-center justify-center flex flex-col absolute top-6 right-0 z-50 bg-primary/65 backdrop-blur-lg gap-2 pt-2 hidden"
   >
@@ -80,10 +65,22 @@ import home_03 from "../../assets/hero/home_03.jpeg";
     >
     <Globe class="min-w-3.5 p-1 grow-0 shrink-0 bg-link text-primary" />
   </p>
-  <a 
-    href="#contenido-principal" class="absolute bottom-10 left-1/2 -translate-x-1/2 z-21 animate-bounce">
-    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+  <a
+    href="#contenido-principal"
+    class="absolute bottom-10 left-1/2 -translate-x-1/2 z-21 animate-bounce"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="40"
+      height="40"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="white"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M7 13l5 5 5-5M7 6l5 5 5-5"></path>
     </svg>
   </a>
 </section>

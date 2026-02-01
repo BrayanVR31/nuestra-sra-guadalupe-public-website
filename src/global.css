@@ -12,6 +12,7 @@
 /* ----------------------- */
 
 @custom-variant dark (&:where(.dark, .dark *));
+@custom-variant hover (&:hover);
 
 @theme {
   --color-primary: #006957;
@@ -23,7 +24,7 @@
   --spacing-hero-y: calc(100svh - var(--spacing-navbar-y));
   --announcement-auto-row: 150px;
   /** Grid layouts */
-  --website-cols: 1fr 330px;
+  --website-cols: 1fr minmax(200px, 330px);
   --main-rows: repeat(auto-fit, var(--spacing-card-y));
   --announcement-cols: repeat(auto-fill, minmax(300px, 1fr));
   --announcement-rows: repeat(auto-fill, var(--announcement-auto-row));
