@@ -1,7 +1,9 @@
 ---
-import { getSaintsCalendar } from "../utils/calendarSaint.service";
+export const prerender = false;
 import CarouselSaint from "./CarouselSaint";
-const saints = await getSaintsCalendar();
+const response = await fetch(`${Astro.url.origin}/api/saintday.json`);
+const saints = await response.json();
+// TODO: Handling error network on fetch API
 ---
 
 {saints && <CarouselSaint client:visible saints={saints} />}
