@@ -1,10 +1,12 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 
 import react from "@astrojs/react";
 
 import icon from "astro-icon";
+
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 /** @type {import("prettier").Config} */
@@ -12,19 +14,19 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {
-      include: [
-        "swiper",
-        "swiper/react"
-      ]
+      include: ["swiper", "swiper/react"],
     },
     ssr: {
-      noExternal: ["swiper"]
-    }
+      noExternal: ["swiper"],
+    },
   },
 
   integrations: [react(), icon()],
+
   prefetch: {
     prefetchAll: false,
-    defaultStrategy: "tap"
-  }
+    defaultStrategy: "tap",
+  },
+
+  adapter: vercel(),
 });
