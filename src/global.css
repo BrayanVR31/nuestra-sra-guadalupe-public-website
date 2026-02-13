@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
 @import "tailwindcss";
 
 /* --- Movimiento Suave --- */
@@ -15,13 +18,46 @@
 @custom-variant hover (&:hover);
 
 @theme {
+  /** ============== Tiempo ordinario(colors variants) ==============*/
+  --color-ordinario: #1b4332;
+  --color-ordinario-50: #e8f5f0;
+  --color-ordinario-100: #d1eae1;
+  --color-ordinario-200: #a3d5c3;
+  --color-ordinario-300: #75c0a5;
+  --color-ordinario-400: #47ab87;
+  --color-ordinario-500: #2d5f4d;
+  --color-ordinario-600: #1b4332;
+  --color-ordinario-700: #163526;
+  --color-ordinario-800: #11271b;
+  --color-ordinario-900: #0a1810;
   --color-primary: #006957;
+
+  /** ============== Dorado (buttons, accents) ==============*/
+  --color-gold-50: #fbf7e6;
+  --color-gold-100: #f6ebb3;
+  --color-gold-200: #f0de7a;
+  --color-gold-300: #e9d141;
+  --color-gold-400: #e2c11a;
+  --color-gold-500: #b8860b;
+  --color-gold-600: #9b7109;
+  --color-gold-700: #7d5c07;
+  --color-gold-800: #5f4605;
+  --color-gold-900: #423103;
+
+  --color-cream-50: #fffff0;
+  --color-cream-100: #faf8f3;
+  --color-cream-200: #f3efe0;
+  --color-cream-300: #e6ddc4;
+  --color-cream-400: #d9cba3;
+  --color-cream-500: #c2b280;
+
   --color-background: #f9f8f6;
   --color-link: #f4f754;
   --spacing-navbar-y: 85px;
   --spacing-card-y: 435px;
   --spacing-carousel-x: 45%;
   --spacing-hero-y: calc(100svh - var(--spacing-navbar-y));
+  --spacing-menu-y: calc(100dvh - var(--spacing-navbar-y));
   --announcement-auto-row: 150px;
   /** Grid layouts */
   --website-cols: 1fr minmax(200px, 330px);
@@ -29,8 +65,10 @@
   --announcement-cols: repeat(auto-fill, minmax(300px, 1fr));
   --announcement-rows: repeat(auto-fill, var(--announcement-auto-row));
   --schedule-cols: repeat(2, minmax(35%, 450px));
+  /**============== Font variation for (heading, hero titles, paragraphs, etc.) ==============*/
   --font-logo: "Merriweather", sans-serif;
-  --font-primary: "Manrope", sans-serif;
+  --font-primary: "Cormorant Garamond", sans-serif;
+  --font-secondary: "Google Sans", serif;
   /** Swiper css variables **/
   --sp-pagination: #f5f2f2;
   --sp-navigation: #f5f2f2;
@@ -151,8 +189,29 @@
   .animate-vertical-loop {
     animation: var(--vertical-loop);
   }
+
+  /** Embla carousel styles */
+  .embla__viewport {
+    overflow: hidden;
+  }
+
+  .embla__container {
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
 }
 
 .leaflet-control-container .leaflet-routing-container {
   display: none;
+}
+
+@utility scrollbar-hidden {
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

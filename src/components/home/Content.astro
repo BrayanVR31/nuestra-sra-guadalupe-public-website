@@ -1,19 +1,19 @@
 ---
-import { announcements } from "./announcement";
-import Announcement from "../Announcement.astro";
+import AnnouncementList from "../../components/common/announcement/AnnouncementList";
 const dateFormatter = new Intl.DateTimeFormat("es-MX", {
   dateStyle: "medium",
 });
 ---
 
 <div>
-  <h3 class="font-bold text-3xl font-logo text-center mb-5">
+  <h3
+    class="font-bold text-4xl md:text-5xl text-ordinario-600 font-primary text-center mb-5"
+  >
     Avisos a la Comunidad
   </h3>
-  <div class="grid gap-8 grid-cols-(--announcement-cols) justify-center">
-    {announcements.map((announcement) => <Announcement {...announcement} />)}
-  </div>
-  <h3 class="font-bold text-3xl font-logo text-center my-10">
+  <AnnouncementList client:visible />
+
+  <h3 class="font-bold text-4xl md:text-5xl font-logo text-center my-10">
     Santa Misa en Vivo: {dateFormatter.format(new Date())}
   </h3>
   <div class="relative">

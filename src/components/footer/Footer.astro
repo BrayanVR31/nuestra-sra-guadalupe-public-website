@@ -1,0 +1,150 @@
+---
+import Heading from "./Heading.astro";
+import List from "./List.astro";
+import Link from "./Link.astro";
+import Facebook from "../../assets/logos/facebook.svg";
+import Youtube from "../../assets/logos/youtube.svg";
+import Internet from "../../assets/logos/internet.svg";
+
+const overlayImage =
+  "https://res.cloudinary.com/df1jrwt7n/image/upload/c_thumb,g_face,h_350,w_400,z_0.4,e_grayscale/v1770682825/jpeg-optimizer_virgen_de_guadalupe_zy4lme.jpg";
+const leftOverlayImage =
+  "https://res.cloudinary.com/df1jrwt7n/image/upload/e_grayscale/v1770687337/jpeg-optimizer_jesus_vhcxqo.jpg";
+---
+
+<div class:list={["bg-ordinario-600", "overflow-hidden", "relative"]}>
+  <!-- Left image -->
+  <div class:list={["h-full", "md:w-1/5", "w-full", "absolute", "right-0"]}>
+    <img
+      src={overlayImage}
+      class:list={[
+        "bg-ordinario-600",
+        "w-full",
+        "h-full",
+        "mix-blend-multiply",
+        "opacity-75",
+        "object-cover",
+        "mask-[linear-gradient(to_right,transparent,black_70%),linear-gradient(to_bottom,black_70%,transparent)]",
+        "mask-intersect",
+      ]}
+    />
+  </div>
+  <!-- Right image -->
+  <div class:list={["h-full", "md:w-1/3", "w-0", "absolute", "left-0"]}>
+    <img
+      src={leftOverlayImage}
+      class:list={[
+        "bg-ordinario-600",
+        "scale-x-[-1]",
+        "w-full",
+        "h-full",
+        "mix-blend-luminosity",
+        "opacity-35",
+        "object-cover",
+        "mask-[linear-gradient(to_right,transparent,black_70%),linear-gradient(to_bottom,black_70%,transparent)]",
+        "mask-intersect",
+      ]}
+    />
+  </div>
+  <!-- Footer content -->
+  <div
+    class:list={[
+      "container",
+      "px-6",
+      "py-12",
+      "md:py-0",
+      "mx-auto",
+      "relative",
+      "min-h-72",
+      "grid",
+      "items-center",
+    ]}
+  >
+    <footer
+      class="text-white flex md:flex-row flex-col items-baseline md:pr-6 md:pl-20 md:gap-0 gap-10"
+    >
+      <!-- General section -->
+      <div class="flex-[1.5]">
+        <Heading>NuestraSraGuadalupe.com</Heading>
+        <p class="text-gray-300 max-w-56 text-base/7 text-start text-pretty">
+          Entérate de los avisos parroquiales, cambios de horario y eventos
+          especiales al instante.
+        </p>
+      </div>
+      <!-- Menu section -->
+      <div class="flex-3 md:gap-0 gap-6 grid grid-cols-1 md:grid-cols-3">
+        <List title="Sitio web">
+          <div class="flex flex-col gap-3 text-gray-300">
+            <Link withArrow resourcePath="/">Inicio</Link>
+            <Link withArrow resourcePath="/servicios">Servicios</Link>
+            <Link withArrow resourcePath="/horarios">Horarios</Link>
+            <Link withArrow resourcePath="/contacto">Contacto</Link>
+          </div>
+        </List>
+        <!-- Catholic resources -->
+        <List title="Recursos católicos">
+          <div class="flex flex-col gap-3 text-gray-300">
+            <Link resourcePath="https://www.mariavision.com/" isExternal>
+              <div class="w-7 h-7 overflow-hidden rounded-full">
+                <img
+                  class="w-full h-full object-cover"
+                  src="/logos/maria_vision.jpeg"
+                />
+              </div>
+              María Visión
+            </Link>
+            <Link resourcePath="https://teatinos.org/" isExternal>
+              <div class="w-7 h-7 overflow-hidden rounded-full">
+                <img
+                  class="w-full h-full object-cover"
+                  src="/logos/teatinos.jpeg"
+                />
+              </div>
+              Teatinos Puebla
+            </Link>
+            <Link resourcePath="https://www.aciprensa.com/" isExternal>
+              <div class="w-7 h-7 overflow-hidden rounded-full">
+                <img
+                  class="w-full h-full object-cover"
+                  src="/logos/aciprensa.png"
+                />
+              </div>
+              Aciprensa
+            </Link>
+            <Link
+              resourcePath="https://www.vatican.va/content/vatican/es.html"
+              isExternal
+            >
+              <div class="w-7 h-7 overflow-hidden rounded-full bg-white">
+                <img
+                  class="w-full h-full object-cover"
+                  src="/logos/santa_sede.png"
+                />
+              </div>
+              La santa sede
+            </Link>
+          </div>
+        </List>
+        <List title="Siguenos">
+          <Link
+            isSocialMedia
+            isExternal
+            resourcePath="https://www.facebook.com/TeatinosPuebla/?locale=es_LA"
+          >
+            <Facebook />
+          </Link>
+          <Link
+            isSocialMedia
+            isExternal
+            resourcePath="https://youtube.com/@teatinospuebla3010"
+          >
+            <Youtube />
+          </Link>
+          <Link fill={false} isSocialMedia resourcePath="/">
+            <Internet />
+          </Link>
+        </List>
+      </div>
+    </footer>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+---
+import Text from "../common/Text.astro";
+import Button from "../common/Button.astro";
+import FadeIn from "../common/FadeIn.tsx";
+import SocialNetwork from "../common/SocialNetwork.astro";
+import Youtube from "../../assets/logos/youtube.svg";
+import Facebook from "../../assets/logos/facebook.svg";
+
+const heroClasses = ["min-h-hero-y", "w-full", "flex", "bg-cream-100"];
+const heroImage =
+  "https://res.cloudinary.com/df1jrwt7n/image/upload/v1769984456/home_hero_wudbiw.jpg";
+// TODO: Make this image more dynamic or connect with cloudinary folder
+---
+
+<section class:list={heroClasses} aria-labelledby="hero-title">
+  <!-- Hero content -->
+  <article
+    class:list={[
+      "flex",
+      "items-center",
+      "text-center",
+      "px-8",
+      "md:px-16",
+      "py-12",
+      "lg:text-left",
+      "flex-1",
+    ]}
+  >
+    <div>
+      <!-- Title -->
+      <FadeIn client:visible>
+        <Text
+          variant="hero"
+          id="hero-title"
+          class="text-neutral-800 split-animate"
+        >
+          Bienvenidos a la Parroquia de nuestra
+          <span class="text-gold-600">Sra. de Guadalupe</span>
+        </Text>
+      </FadeIn>
+      <!-- Description -->
+      <FadeIn client:visible delay={0.2}>
+        <Text variant="large-paragraph" class="mt-5 text-neutral-600"
+          >Encuentra horarios de misa, servicios parroquiales y preparación para
+          los sacramentos.</Text
+        >
+      </FadeIn>
+      <!-- Buttons -->
+      <FadeIn client:visible delay={0.3}>
+        <div class="mt-10">
+          <Button variant="primary" type="a" href="/horarios"
+            >Consulta horarios</Button
+          >
+        </div>
+      </FadeIn>
+    </div>
+  </article>
+  <!-- Hero image with clip path -->
+  <div
+    class:list={["hero-img", "hidden", "lg:block", "lg:w-[55%]", "relative"]}
+  >
+    <picture>
+      <img src={heroImage} class:list={["h-full", "w-full", "object-cover"]} />
+    </picture>
+    <div
+      class:list={[
+        "bg-cream-200",
+        "top-1/2",
+        "-translate-y-1/2",
+        "right-6",
+        "absolute",
+        "flex",
+        "flex-col",
+        "shadow-lg",
+      ]}
+    >
+      <SocialNetwork externalPath="https://www.youtube.com/@teatinospuebla3010">
+        <Youtube />
+      </SocialNetwork>
+      <SocialNetwork
+        externalPath="https://www.facebook.com/TeatinosPuebla/?locale=es_LA"
+      >
+        <Facebook />
+      </SocialNetwork>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-img {
+    clip-path: polygon(10% 0, 100% 0%, 100% 100%, 0 100%);
+  }
+</style>

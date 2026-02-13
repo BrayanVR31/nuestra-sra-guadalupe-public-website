@@ -1,0 +1,60 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type TextVariants =
+  | "hero"
+  | "main-title"
+  | "section"
+  | "sub-section"
+  | "small-text"
+  | "normal-paragraph"
+  | "large-paragraph"
+  | "h4";
+type TextSettings = {
+  classes: string[] | string;
+  tagName: string; // html tag representation (h1, h2, h4, p, etc.)
+};
+interface Props extends HTMLAttributes<any> {
+  variant?: TextVariants;
+}
+const { variant = "normal-paragraph", ...htmlAttr } = Astro.props;
+const titleSettings: Record<TextVariants, TextSettings> = {
+  hero: {
+    classes: ["font-primary", "text-6xl/16", "font-bold"],
+    tagName: "h1",
+  },
+  "main-title": {
+    classes: ["font-primary", "text-5xl", "font-bold"],
+    tagName: "h1",
+  },
+  section: {
+    classes: ["font-primary", "text-4xl", "font-semibold"],
+    tagName: "h2",
+  },
+  "sub-section": {
+    classes: ["font-primary", "text-3xl", "font-semibold"],
+    tagName: "h3",
+  },
+  h4: {
+    classes: ["font-primary", "text-2xl", "font-semibold"],
+    tagName: "h4",
+  },
+  "large-paragraph": {
+    classes: ["font-secondary", "text-xl"],
+    tagName: "p",
+  },
+  "normal-paragraph": {
+    classes: ["font-secondary", "text-base"],
+    tagName: "p",
+  },
+  "small-text": {
+    classes: ["font-secondary", "text-sm"],
+    tagName: "p",
+  },
+};
+const TagName = titleSettings[variant].tagName;
+---
+
+<TagName class:list={titleSettings[variant].classes} {...htmlAttr}>
+  <slot />
+</TagName>

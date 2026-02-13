@@ -1,0 +1,14 @@
+---
+import Heading from "./Heading.astro";
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<div class="md:px-4">
+  <Heading>{title}</Heading>
+  <div>
+    <slot />
+  </div>
+</div>

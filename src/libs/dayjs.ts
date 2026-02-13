@@ -1,8 +1,10 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
+import "dayjs/locale/es";
 dayjs.extend(utc);
 dayjs.extend(timezone);
+dayjs.locale("es");
 dayjs.tz.setDefault("America/Mexico_City");
 
 type TimeUnit = {
@@ -119,3 +121,5 @@ export function getMassStatus(weekDay: Date, scheduledTime: string) {
     return { type: "now", message: "Se está celebrando" };
   return { type: "incoming", message: "Próxima" };
 }
+
+export default dayjs;

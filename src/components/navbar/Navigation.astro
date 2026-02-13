@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+import Link from "./Link.astro";
+import logoParroquia from "../../assets/logos/parroquia.jpg";
+import { navLinks } from "./navigation-links";
+import MobileMenu from "./MobileMenu.tsx";
+
+const headerClasses = [
+  "sticky",
+  "top-0",
+  "left-0",
+  "border-b",
+  "z-50",
+  "bg-ordinario-600",
+  "border-gold-500",
+  "border-b-2",
+];
+---
+
+<header class:list={headerClasses}>
+  <nav class:list={["container", "mx-auto", "px-6"]}>
+    <!-- Navigation container -->
+    <div
+      class:list={[
+        "flex",
+        "justify-between",
+        "md:justify-start",
+        "gap-12",
+        "items-center",
+        "h-navbar-y",
+      ]}
+    >
+      <div
+        class:list={[
+          "flex",
+          "justify-between",
+          "items-center",
+          "md:w-auto",
+          "w-full",
+        ]}
+      >
+        <!-- Logo -->
+        <a
+          class:list={[
+            "w-12",
+            "aspect-square",
+            "rounded-full",
+            "overflow-hidden",
+            "bg-white",
+          ]}
+          href="/"
+        >
+          <Image
+            src={logoParroquia}
+            alt="Logo Parroquia Guadalupe"
+            class="object-contain w-full h-full outline-2 outline-white -outline-offset-2"
+          />
+        </a>
+        <!-- Mobile menu -->
+        <div class="md:hidden">
+          <MobileMenu client:only="react" />
+        </div>
+      </div>
+      <!-- Desktop menu -->
+      <div class="md:block hidden">
+        {
+          navLinks.map(({ name, path }) => (
+            <Link metaContent={name} to={path}>
+              {name}
+            </Link>
+          ))
+        }
+      </div>
+    </div>
+  </nav>
+</header>

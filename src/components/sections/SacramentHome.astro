@@ -1,0 +1,71 @@
+---
+import Dove from "../../assets/logos/dove.svg";
+import SacramentList from "../common/sacrament/SacramentList";
+---
+
+<section
+  class:list={[
+    "min-h-svh",
+    "grid",
+    "place-items-center",
+    "place-content-center",
+    "container",
+    "px-6",
+    "mx-auto",
+  ]}
+  id="sacramentos"
+  aria-labelledby="sacramentos-home"
+>
+  <div
+    class:list={[
+      "inline-flex",
+      "items-center",
+      "justify-center",
+      "gap-6",
+      "mb-12",
+      "mx-auto",
+    ]}
+  >
+    <span
+      class:list={[
+        "inline-block",
+        "md:w-15",
+        "md:h-15",
+        "h-10",
+        "w-10",
+        "text-gold-500",
+        "*:fill-current",
+        "*:block",
+        "*:w-full",
+        "*:h-full",
+        "*:mx-auto",
+      ]}
+    >
+      <Dove />
+    </span>
+    <h2
+      class:list={[
+        "font-primary",
+        "md:text-5xl",
+        "text-4xl",
+        "text-center",
+        "text-ordinario-600",
+        "font-bold",
+        "relative",
+        "before:content-['']",
+        "before:absolute",
+        "before:w-1/2",
+        "before:h-0.5",
+        "before:bg-gold-500",
+        "before:-bottom-1/3",
+        "before:left-1/2",
+        "before:-translate-x-1/2",
+        "tracking-wide",
+      ]}
+      id="sacramentos-home"
+    >
+      Sacramentos
+    </h2>
+  </div>
+  <SacramentList client:visible />
+</section>

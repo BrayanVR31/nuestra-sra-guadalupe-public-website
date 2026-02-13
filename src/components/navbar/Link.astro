@@ -1,0 +1,79 @@
+---
+interface Props {
+  to: string;
+  metaContent: string;
+}
+const { to, metaContent } = Astro.props;
+const { pathname } = Astro.url;
+const isActive = to === pathname;
+// Default styles
+const linkContainerClasses = [
+  "inline-block",
+  "overflow-hidden",
+  "group/link",
+  "ml-8",
+  "first:ml-0",
+];
+
+const transitionType = "ease-[cubic-bezier(0.33,1,0.68,1)]";
+const linkClasses = [
+  "px-0",
+  "py-2",
+  "relative",
+  "inline-block",
+  "m-0",
+  "no-underline",
+  "text-base",
+  "font-secondary",
+  "text-cream-50",
+  "uppercase",
+  "transition-all",
+  transitionType,
+  "duration-300",
+  "text-center",
+  "before:absolute",
+  "after:absolute",
+  "before:transition-all",
+  "after:transition-all",
+  "after:" + transitionType,
+  "before:" + transitionType,
+  "before:duration-300",
+  "after:duration-300",
+];
+const underlineClasses = [
+  "before:block",
+  "before:w-full",
+  "before:h-[3px]",
+  "before:bg-gold-400",
+  "before:bottom-full",
+  "before:content-['']",
+];
+const hoverContentClasses = [
+  "after:content-[attr(data-hover)]",
+  "after:text-gold-400",
+  "after:left-0",
+  "after:bottom-full",
+  "after:block",
+  "after:px-0",
+  "after:py-2",
+  "after:whitespace-nowrap",
+  "after:text-center",
+];
+---
+
+<div class:list={linkContainerClasses}>
+  <a
+    href={to}
+    data-hover={metaContent}
+    class:list={[
+      linkClasses,
+      underlineClasses,
+      hoverContentClasses,
+      isActive ? ["translate-y-full"] : ["group-hover/link:translate-y-full"],
+    ]}
+  >
+    <span>
+      <slot />
+    </span>
+  </a>
+</div>

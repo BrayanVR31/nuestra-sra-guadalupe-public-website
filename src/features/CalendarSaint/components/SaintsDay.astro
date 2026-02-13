@@ -1,0 +1,7 @@
+---
+import { getSaintsCalendar } from "../utils/calendarSaint.service";
+import CarouselSaint from "./CarouselSaint";
+const saints = await getSaintsCalendar();
+---
+
+{saints && <CarouselSaint client:visible saints={saints} />}

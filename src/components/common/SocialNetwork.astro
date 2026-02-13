@@ -1,0 +1,30 @@
+---
+interface Props {
+  externalPath: string;
+}
+const { externalPath } = Astro.props;
+---
+
+<a
+  class:list={[
+    "inline-block",
+    "w-15",
+    "h-15",
+    "text-ordinario-600",
+    "*:fill-current",
+    "*:block",
+    "*:w-full",
+    "*:h-full",
+    "*:mx-auto",
+    "*:p-5",
+    "hover:text-cream-200",
+    "hover:bg-ordinario-600",
+    "transition-all",
+    "duration-400",
+  ]}
+  href={externalPath}
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  <slot />
+</a>

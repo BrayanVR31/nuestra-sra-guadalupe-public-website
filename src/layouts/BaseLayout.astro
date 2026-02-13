@@ -2,7 +2,8 @@
 import { ClientRouter } from "astro:transitions";
 import "../global.css";
 import Navbar from "../components/navbar/Navbar.astro";
-import Footer from "../components/Footer.astro";
+import Navigation from "../components/navbar/Navigation.astro";
+import Footer from "../components/footer/Footer.astro";
 
 interface Props {
   title: string;
@@ -20,22 +21,29 @@ const { title } = Astro.props;
     <title>Nuestra Sra. Guadalupe | {title}</title>
     <ClientRouter />
   </head>
-  <body class="bg-background font-primary">
-    <Navbar />
+  <body class="bg-background font-secondary">
+    <!-- <Navbar /> -->
+    <Navigation />
     <!-- Main content -->
     <main>
       <slot />
     </main>
+    <Footer />
     <!-- Footer -->
-    <div class="bg-primary text-white py-8">
+    <!-- 
+    <div class="bg-ordinario-600 text-white py-8 relative overflow-hidden">
       <Footer />
+      <img
+        class:list={[
+          "absolute",
+          "w-full",
+          "top-0",
+          "mix-blend-darken",
+          "opacity-80",
+        ]}
+        src=""
+      />
     </div>
+    -->
   </body>
 </html>
-
-<script>
-  import { showBoxOnScroll } from "../scripts/scroll";
-  document.addEventListener("astro:page-load", () => {
-    showBoxOnScroll();
-  });
-</script>

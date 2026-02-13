@@ -1,0 +1,55 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+interface Anchor extends HTMLAttributes<"a"> {
+  type?: "a";
+}
+
+interface Btn extends HTMLAttributes<"button"> {
+  type?: "button";
+}
+
+type Props = (Anchor | Btn) & {
+  variant?: "primary";
+  shape?: "normal" | "square";
+};
+const buttonVariant = {
+  primary: [
+    "bg-ordinario-600",
+    "text-white",
+    "hover:bg-ordinario-600/80",
+    "focus:ring-4",
+    "focus:ring-gold-400/50",
+  ],
+};
+const buttonShape = {
+  normal: ["px-8", "py-4"],
+  square: ["p-4"],
+};
+
+const {
+  type = "button",
+  variant = "primary",
+  shape = "normal",
+  ...htmlAttr
+} = Astro.props;
+const TagName = type;
+---
+
+<TagName
+  class:list={[
+    "cursor-pointer",
+    "font-secondary",
+    "text-base",
+    "rounded-sm",
+    "transition-all",
+    "duration-400",
+    "focus:outline-none",
+    "inline-block",
+    buttonVariant[variant],
+    buttonShape[shape],
+  ]}
+  {...htmlAttr}
+>
+  <slot />
+</TagName>
