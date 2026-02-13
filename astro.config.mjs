@@ -1,32 +1,16 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
-
 import react from "@astrojs/react";
-
 import icon from "astro-icon";
-
 import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
-/** @type {import("prettier").Config} */
+/** @type {import('astro').AstroUserConfig} */
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
-    optimizeDeps: {
-      include: ["swiper", "swiper/react"],
-    },
-    ssr: {
-      noExternal: ["swiper"],
-    },
   },
-
   integrations: [react(), icon()],
-
-  prefetch: {
-    prefetchAll: false,
-    defaultStrategy: "tap",
-  },
-
   adapter: vercel(),
 });
