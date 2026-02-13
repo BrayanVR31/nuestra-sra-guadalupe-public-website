@@ -1,0 +1,36 @@
+---
+import ServiceCard from "./components/ServiceCard.astro";
+import { sacraments } from "./data/sacraments";
+---
+
+<section
+  class="py-24 min-h-svh"
+  id="church-services"
+  aria-labelledby="docs-title"
+>
+  <!-- Section heading -->
+  <!-- TODO: Create a reusable heading section & article -->
+  <div
+    class="mb-10 w-max mx-auto relative after:content-[''] after:absolute after:w-10/12 after:h-0.5 after:bg-ordinario after:left-1/2 after:-translate-x-1/2 after:-bottom-4"
+  >
+    <h2
+      class="text-center font-extrabold text-2xl md:text-4xl uppercase text-neutral-800 mb-2"
+      id="docs-title"
+    >
+      Nuestros Servicios
+    </h2>
+    <h3 class="text-center text-lg text-neutral-800 font-semibold">
+      Documentación para Sacramentos
+    </h3>
+  </div>
+  <p
+    class="md:max-w-lg mx-auto text-center text-base/loose text-neutral-700 mb-14"
+  >
+    Consulte los requisitos necesarios para la celebración de los santos
+    sacramentos en nuestra comunidad. Facilitamos el proceso administrativo para
+    su vida espiritual.
+  </p>
+  <div class="grid grid-cols-1 gap-8 items-stretch">
+    {sacraments.map((sacrament) => <ServiceCard {...sacrament} />)}
+  </div>
+</section>
