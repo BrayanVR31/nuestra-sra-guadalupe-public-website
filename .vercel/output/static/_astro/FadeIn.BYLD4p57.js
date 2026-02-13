@@ -1,1 +1,0 @@
-import{j as o}from"./jsx-runtime.D_zvdyIk.js";import{m as r}from"./proxy.4yTz8Dir.js";import"./index.CbBne_R2.js";function m({children:i,delay:t=0}){return o.jsx(r.div,{initial:{opacity:0,y:20},whileInView:{opacity:1,y:0},viewport:{once:!0},transition:{duration:.45,delay:t,ease:[.22,1,.36,1]},children:i})}export{m as default};
