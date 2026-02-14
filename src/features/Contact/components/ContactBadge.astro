@@ -1,0 +1,68 @@
+---
+import type { LucideIcon } from "@lucide/astro";
+
+interface Address {
+  type: "address";
+  addressDescription: string;
+}
+
+interface PhoneNumber {
+  type: "phonenumber";
+  phone: string;
+}
+
+interface Email {
+  type: "email";
+  email: string;
+}
+
+type Props = {
+  title: string;
+  ContactIcon: LucideIcon;
+} & (Address | PhoneNumber | Email);
+
+const { type, ContactIcon, title, ...props } = Astro.props;
+const phoneMxFormat = /(\d{3})(\d{3})(\d{4})/;
+---
+
+<div class="inline-flex flex-col items-center w-max">
+  <div
+    class="bg-ordinario text-white w-28 h-28 rounded-full flex items-center justify-center"
+  >
+    <ContactIcon width="50%" height="auto" />
+  </div>
+  <h6
+    class="uppercase font-bold text-center tracking-wider text-lg mt-8 text-neutral-800 mb-4"
+  >
+    {title}
+  </h6>
+  {
+    type === "address" && (
+      <address class="max-w-3xs mx-auto text-center text-neutral-700">
+        {props.addressDescription}
+      </address>
+    )
+  }
+  {
+    type === "phonenumber" && (
+      <a
+        class="text-neutral-700"
+        href={`tel:+52${props.phone}`}
+        aria-label="Llamar al número de atención de oficinas de la parroquia"
+      >
+        +52 {props.phone.replace(phoneMxFormat, "$1 $2 $3")}
+      </a>
+    )
+  }
+  {
+    type === "email" && (
+      <a
+        class="text-neutral-700"
+        href={`mailto:${props.email}`}
+        aria-label={`Enviar un correo electrónico a ${props.email}`}
+      >
+        {props.email}
+      </a>
+    )
+  }
+</div>
