@@ -1,21 +1,22 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/hero/HomeHero.astro";
-import Content from "../components/home/Content.astro";
 import Aside from "../components/Aside.astro";
 import HeroHome from "../components/sections/HeroHome.astro";
 import SacramentHome from "../components/sections/SacramentHome.astro";
+import AnnouncementsSection from "@/features/AnnouncementList/AnnouncementsSection.astro";
+import ContainerLayout from "@/layouts/ContainerLayout.astro";
 ---
 
 <BaseLayout title="Inicio">
   <!-- <Hero /> -->
   <HeroHome />
-  <SacramentHome />
-  <div
-    id="contenido-principal"
-    class="min-h-svh max-w-7xl mx-auto px-6 grid grid-cols-(--website-cols) max-sm:grid-cols-1 gap-16 my-10"
-  >
-    <Content />
-    <Aside />
-  </div>
+  <ContainerLayout>
+    <SacramentHome />
+    <div
+      class="min-h-svh grid grid-cols-(--website-cols) max-sm:grid-cols-1 gap-16"
+    >
+      <AnnouncementsSection />
+      <Aside />
+    </div>
+  </ContainerLayout>
 </BaseLayout>

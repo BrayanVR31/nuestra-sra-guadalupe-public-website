@@ -1,11 +1,20 @@
 import { ExternalLink } from "lucide-react";
+import { useState } from "react";
+import { Image } from "@unpic/react";
 import type { Saint } from "../types/saint.type";
 
 export default function SaintDetails({ image, title, content, link }: Saint) {
+  const [loaded, setLoaded] = useState(false);
   return (
-    <div>
-      <figure className="w-full h-56 rounded-sm overflow-hidden">
-        <img className="w-full h-full object-cover" src={image!} />
+    <div className="max-h-[75vh]">
+      <figure className="w-full h-auto max-h-[60vh] md:h-[250px] overflow-hidden bg-neutral-100">
+        <Image
+          src={image!}
+          layout="fullWidth"
+          alt={title}
+          className="w-full h-full object-cover"
+          onLoad={() => setLoaded(true)}
+        />
       </figure>
       <div className="max-h-40 overflow-auto max-md:scrollbar-hidden">
         <h5 className="font-semibold text-xl text-neutral-800 py-5">{title}</h5>

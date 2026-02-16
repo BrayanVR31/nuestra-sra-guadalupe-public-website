@@ -1,0 +1,34 @@
+---
+import { announcements } from "./data/announcements";
+import GridContainer from "./components/grid/GridContainer";
+import GridItem from "./components/grid/GridItem";
+import AnnouncementCard from "./components/AnnouncementCard.astro";
+---
+
+<section id="announcement-list" aria-labelledby="announcement-title">
+  <div
+    class="flex flex-col flex-wrap md:**:w-max items-center gap-4 mx-auto mb-10"
+  >
+    <span class="text-base text-center text-gold-700"
+      >Entérate primero de todos los avisos parroquiales</span
+    >
+    <h3
+      class="font-secondary font-semibold text-4xl text-center uppercase tracking-wider text-neutral-800"
+      id="announcement-title"
+    >
+      Avisos a la Comunidad
+    </h3>
+  </div>
+  <GridContainer
+    client:load
+    templateCols="repeat(auto-fill, minmax(300px, 1fr))"
+  >
+    {
+      announcements.map((announcement) => (
+        <GridItem transition:animate="fade" client:load>
+          <AnnouncementCard {...announcement} />
+        </GridItem>
+      ))
+    }
+  </GridContainer>
+</section>

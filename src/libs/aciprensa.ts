@@ -34,7 +34,8 @@ export const getContent = (description: string) => {
 export const getImage = (description: string) => {
   const $ = cheerio.load(description);
   const image = $("img").toString();
-  return normalizeURLImage(image);
+  const base = normalizeURLImage(image);
+  return base;
 };
 
 /***
@@ -53,5 +54,5 @@ const normalizeURLImage = (malformedURL: string) => {
     .replace(/<\/?[^>]+>/g, "")
     .replace(/[">]/g, "")
     .replace(/\s.*/g, "");
-  return result.trim();
+  return result.trim()?.replace("http://", "https://");
 };

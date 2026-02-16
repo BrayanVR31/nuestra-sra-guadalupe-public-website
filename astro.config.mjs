@@ -13,4 +13,7 @@ export default defineConfig({
   },
   integrations: [react(), icon()],
   adapter: vercel(),
+  image: {
+    domains: ["res.cloudinary.com"],
+  },
 });

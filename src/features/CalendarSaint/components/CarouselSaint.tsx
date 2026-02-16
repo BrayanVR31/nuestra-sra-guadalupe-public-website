@@ -1,26 +1,14 @@
-import { useEffect, useState } from "react";
-import EmblaCarousel from "../../../components/common/EmblaCarousel";
-import type { Saint } from "../types/saint.type";
+import EmblaCarousel from "@/components/common/embla/EmblaCarousel";
 import CardSaint from "./CardSaint";
+import useSaint from "../hooks/useSaint";
 
 export default function CarouseSaint() {
-  // TODO: Create a custom hook for handling errors and fetch
-  const [saints, setSaints] = useState<Saint[]>([]);
-  const getSaintDay = async () => {
-    try {
-      const response = await fetch("/api/saintday.json");
-      const data = await response.json();
-      setSaints(data);
-    } catch (error) {}
-  };
-  useEffect(() => {
-    getSaintDay();
-  }, []);
+  const { data } = useSaint();
   return (
     <EmblaCarousel
       render={(slideClass) => (
         <>
-          {saints.map((saint) => (
+          {data.map((saint) => (
             <div key={saint.title} className={slideClass}>
               <CardSaint {...saint} />
             </div>
