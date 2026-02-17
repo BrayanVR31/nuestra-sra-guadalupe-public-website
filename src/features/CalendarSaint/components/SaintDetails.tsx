@@ -5,11 +5,15 @@ import type { Saint } from "../types/saint.type";
 
 export default function SaintDetails({ image, title, content, link }: Saint) {
   const [loaded, setLoaded] = useState(false);
+  const FALLBACK_URL = "/images/not_found.jpg";
   return (
     <div className="max-h-[75vh]">
       <figure className="w-full h-auto max-h-[60vh] md:h-[250px] overflow-hidden bg-neutral-100">
         <Image
-          src={image!}
+          src={image || FALLBACK_URL}
+          onError={(e) => {
+            e.currentTarget.src = FALLBACK_URL;
+          }}
           layout="fullWidth"
           alt={title}
           className="w-full h-full object-cover"

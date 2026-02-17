@@ -16,6 +16,7 @@ export default function CardSaint({
 }: CardSaintProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const FALLBACK_URL = "/images/not_found.jpg";
   return (
     <article
       key={title}
@@ -25,12 +26,15 @@ export default function CardSaint({
         <Image
           width={400}
           height={300}
-          src={image!}
+          src={image || FALLBACK_URL}
           alt={title}
           layout="constrained"
           loading="lazy"
           decoding="async"
           onLoad={() => setIsLoaded(true)}
+          onError={(e) => {
+            e.currentTarget.src = FALLBACK_URL;
+          }}
           className={`
           w-full min-h-full object-cover 
           transition-all duration-500

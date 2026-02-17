@@ -1,8 +1,8 @@
 import _ from "lodash";
-import dayjs from "../../../libs/dayjs";
+import dayjs from "@/libs/dayjs";
 import type { Saint } from "../types/saint.type";
-import type { AciprensaRSS } from "../../../types/aciprensa.type";
-import { getContent, getImage } from "../../../libs/aciprensa";
+import type { AciprensaRSS } from "@/types/aciprensa.type";
+import { getContent, getImage } from "@/libs/aciprensa";
 
 export const getSaintDay = (
   channel: AciprensaRSS["rss"]["channel"],
