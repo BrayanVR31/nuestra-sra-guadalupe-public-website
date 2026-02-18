@@ -74,7 +74,11 @@ export default function CardSlideUp({
         </div>
       </figcaption>
 
-      <a href={path} className="absolute inset-0 z-10"></a>
+      <a
+        href={path}
+        className="absolute inset-0 z-10"
+        aria-label={`Read more about ${label} documentation requirements`}
+      ></a>
     </motion.article>
   );
 }

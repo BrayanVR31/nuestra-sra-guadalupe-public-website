@@ -7,6 +7,7 @@ interface Props {
   isSocialMedia?: boolean;
   fill?: boolean;
   withArrow?: boolean;
+  ariaLabel?: string;
 }
 const {
   resourcePath,
@@ -14,10 +15,16 @@ const {
   isSocialMedia = false,
   fill = true,
   withArrow = false,
+  ariaLabel,
 } = Astro.props;
-const linkProps = isExternal
-  ? { target: "_blank", rel: "noopener noreferrer" }
+const discernibleName = ariaLabel
+  ? {
+      "aria-label": ariaLabel,
+    }
   : {};
+const linkProps = isExternal
+  ? { target: "_blank", rel: "noopener noreferrer", ...discernibleName }
+  : { ...discernibleName };
 const linkClasses = isSocialMedia
   ? [
       "inline-block",

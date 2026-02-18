@@ -1,11 +1,13 @@
 ---
 interface Props {
   externalPath: string;
+  ariaLabel: string;
 }
-const { externalPath } = Astro.props;
+const { externalPath, ariaLabel } = Astro.props;
 ---
 
 <a
+  aria-label={ariaLabel}
   class:list={[
     "inline-block",
     "w-15",

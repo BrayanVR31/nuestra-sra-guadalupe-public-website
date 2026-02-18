@@ -26,6 +26,8 @@ export default function EmblaCarousel({ render }: EmblaCarouselProps) {
         <div className="hidden md:block">
           {/** Carousel navigation */}
           <button
+            id="prev-button"
+            aria-label="Go to prev slide"
             className="embla__prev border rounded-full bg-ordinario text-white w-8 h-8 *:w-3/4 *:mx-auto cursor-pointer hover:bg-ordinario/80 transition-all duration-300 disabled:opacity-25 disabled:pointer-events-none mr-2"
             onClick={scrollPrev}
             disabled={prevButtonDisabled}
@@ -33,6 +35,8 @@ export default function EmblaCarousel({ render }: EmblaCarouselProps) {
             <ChevronLeft />
           </button>
           <button
+            id="next-button"
+            aria-label="Go to next slide"
             className="embla__prev border rounded-full bg-ordinario text-white w-8 h-8 *:w-3/4 *:mx-auto cursor-pointer hover:bg-ordinario/80 transition-all duration-300 disabled:opacity-25 disabled:pointer-events-none mr-2"
             disabled={nextButtonDisabled}
             onClick={scrollNext}
@@ -44,6 +48,8 @@ export default function EmblaCarousel({ render }: EmblaCarouselProps) {
         <div className="embla__dots flex gap-2">
           {scrollSnaps!.map((_, index) => (
             <button
+              id={`current-slide-${index}`}
+              aria-label={`Go to slide ${index}`}
               className={"embla__dot w-4 h-4 rounded-full border border-ordinario/55".concat(
                 index === isSelectedDot ? " bg-ordinario" : "",
               )}

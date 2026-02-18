@@ -100,6 +100,7 @@ const leftOverlayImage = "jpeg-optimizer_jesus_vhcxqo";
                 <img
                   class="w-full h-full object-cover"
                   src="/logos/maria_vision.jpeg"
+                  alt="Maria vision website logo"
                 />
               </div>
               María Visión
@@ -109,6 +110,7 @@ const leftOverlayImage = "jpeg-optimizer_jesus_vhcxqo";
                 <img
                   class="w-full h-full object-cover"
                   src="/logos/teatinos.jpeg"
+                  alt="Teatinos website logo"
                 />
               </div>
               Teatinos Puebla
@@ -118,6 +120,7 @@ const leftOverlayImage = "jpeg-optimizer_jesus_vhcxqo";
                 <img
                   class="w-full h-full object-cover"
                   src="/logos/aciprensa.png"
+                  alt="Aciprensa website logo"
                 />
               </div>
               Aciprensa
@@ -130,6 +133,7 @@ const leftOverlayImage = "jpeg-optimizer_jesus_vhcxqo";
                 <img
                   class="w-full h-full object-cover"
                   src="/logos/santa_sede.png"
+                  alt="Santa Sede website logo"
                 />
               </div>
               La santa sede
@@ -139,19 +143,26 @@ const leftOverlayImage = "jpeg-optimizer_jesus_vhcxqo";
         <List title="Siguenos">
           <Link
             isSocialMedia
+            ariaLabel="Read more about nuestra sra. Guadalupe facebook website"
             isExternal
             resourcePath="https://www.facebook.com/TeatinosPuebla/?locale=es_LA"
           >
             <Facebook />
           </Link>
           <Link
+            ariaLabel="Read more about nuestra sra. Guadalupe youtube channel"
             isSocialMedia
             isExternal
             resourcePath="https://youtube.com/@teatinospuebla3010"
           >
             <Youtube />
           </Link>
-          <Link fill={false} isSocialMedia resourcePath="/">
+          <Link
+            ariaLabel="Read more about nuestra sra. Guadalupe website"
+            fill={false}
+            isSocialMedia
+            resourcePath="/"
+          >
             <Internet />
           </Link>
         </List>
