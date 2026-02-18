@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Parroquia Nuestra Sra. Guadalupe",
+  "short_name": "Ntra. Sra. Guadalupe",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +15,7 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
+  "theme_color": "#1b4332",
   "background_color": "#ffffff",
   "display": "standalone"
 }
