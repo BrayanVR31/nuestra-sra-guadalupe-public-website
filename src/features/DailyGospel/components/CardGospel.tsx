@@ -6,7 +6,7 @@ import {
   gospelTitle,
   resizeAction,
 } from "../data/gospel-pictures";
-import { cld } from "../config/cloudinary";
+import { cld } from "@/config/cloudinary";
 import { useState } from "react";
 
 export default function CardGospel({ title, type, verses }: GospelReading) {

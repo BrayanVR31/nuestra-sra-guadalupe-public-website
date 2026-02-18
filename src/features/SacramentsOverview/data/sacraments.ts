@@ -1,8 +1,7 @@
 export const sacraments = [
   {
     id: 1,
-    image:
-      "https://res.cloudinary.com/df1jrwt7n/image/upload/w_800/v1770589871/josh-applegate-mjn1LcoU1Cw-unsplash_vnvgey.jpg",
+    image: "josh-applegate-mjn1LcoU1Cw-unsplash_vnvgey",
     label: "Bautizos",
     color: "#17a2b8",
     overlayColor: "#0a3d3e",
@@ -11,8 +10,7 @@ export const sacraments = [
   },
   {
     id: 2,
-    image:
-      "https://res.cloudinary.com/df1jrwt7n/image/upload/w_800/v1770594190/jpeg-optimizer_josh-applegate-SrWVeL5DyNM-unsplash_reux42.jpg",
+    image: "jpeg-optimizer_josh-applegate-SrWVeL5DyNM-unsplash_reux42",
     label: "Bodas",
     color: "#f4c2d7",
     overlayColor: "#2d1b1e",
@@ -21,8 +19,7 @@ export const sacraments = [
   },
   {
     id: 3,
-    image:
-      "https://res.cloudinary.com/df1jrwt7n/image/upload/w_800/v1770597500/jpeg-optimizer_betzy-arosemena-vnWRdPUWrb8-unsplash_jrlijz.jpg",
+    image: "jpeg-optimizer_betzy-arosemena-vnWRdPUWrb8-unsplash_jrlijz",
     label: "Primera Comunión",
     color: "#ffd700",
     overlayColor: "#2b1f0d",

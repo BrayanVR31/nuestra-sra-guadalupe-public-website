@@ -1,6 +1,6 @@
 import { type Variants, motion } from "motion/react";
 import CardSlideUp from "./CardSlideUp";
-import { sacraments } from "./sacraments";
+import { sacraments } from "../data/sacraments";
 
 const variants: Variants = {
   hidden: { opacity: 0 },
@@ -22,7 +22,9 @@ export default function SacramentList() {
       viewport={{ once: true, margin: "-100px" }}
       className="grid md:grid-cols-3 gap-10"
     >
-      {sacraments.map(({ id, ...sacrament }) => <CardSlideUp key={id} {...sacrament} />)}
+      {sacraments.map(({ id, ...sacrament }) => (
+        <CardSlideUp key={id} {...sacrament} />
+      ))}
     </motion.div>
   );
 }
