@@ -6,7 +6,13 @@ import ContactSection from "@/features/Contact/ContactSection.astro";
 import ContactoHero from "@/assets/images/contacto.jpg";
 ---
 
-<BaseLayout title="contacto">
+<BaseLayout
+  meta={{
+    description:
+      "En este espacio encontrará nuestra ubicación exacta y los canales de atención para resolver sus dudas y mantenerse en contacto con nuestra comunidad.",
+  }}
+  title="contacto"
+>
   <Hero
     title="Estamos aquí para ti"
     description="¿Necesitas ayuda o tienes alguna pregunta? Contáctanos."
