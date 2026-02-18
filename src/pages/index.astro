@@ -1,8 +1,7 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Aside from "../components/Aside.astro";
-import HeroHome from "../components/sections/HeroHome.astro";
-import SacramentHome from "../components/sections/SacramentHome.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import HeroHome from "@/components/sections/HeroHome.astro";
+import SacramentHome from "@/components/sections/SacramentHome.astro";
 import AnnouncementsSection from "@/features/AnnouncementList/AnnouncementsSection.astro";
 import ContainerLayout from "@/layouts/ContainerLayout.astro";
 import CalendarSaintSection from "@/features/CalendarSaint/CalendarSaintSection.astro";
@@ -22,7 +21,6 @@ import DailyGospelSection from "@/features/DailyGospel/DailyGospelSection.astro"
         <CalendarSaintSection />
         <DailyGospelSection />
       </aside>
-      <Aside />
     </div>
   </ContainerLayout>
 </BaseLayout>

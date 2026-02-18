@@ -98,7 +98,6 @@ export const getGospelReadingList = (description: string) => {
   const cleanDescription = sanitizeHtml(description, sanitizeOptions);
   const $ = cheerio.load(cleanDescription);
   const readingList: GospelReading[] = [];
-  console.log(cleanDescription);
   $('div[style*="margin-bottom:20px"]').each((_, element) => {
     const titleDiv = $(element);
     const titleReading = titleDiv.find("h3").text().trim();

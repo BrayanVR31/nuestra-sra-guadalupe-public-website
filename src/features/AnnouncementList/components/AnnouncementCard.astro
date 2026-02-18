@@ -42,7 +42,9 @@ const shortDate = new Intl.DateTimeFormat("es-MX", {
     <h5 class="font-bold text-center text-xl text-neutral-800 mb-4">
       {title}
     </h5>
-    <p class="text-neutral-700 text-sm/8 text-justify">{content}</p>
+    <p class="text-neutral-700 text-sm/8 text-justify line-clamp-3">
+      {content}
+    </p>
   </div>
   <!-- Footer -->
   <div class="mt-6">

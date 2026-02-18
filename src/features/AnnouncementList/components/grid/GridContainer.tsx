@@ -27,7 +27,7 @@ export default function GridCard({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
-      className="grid gap-8"
+      className="grid gap-10"
     >
       {children}
     </motion.div>

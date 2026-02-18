@@ -1,4 +1,5 @@
 ---
+import { CldImage } from "astro-cloudinary";
 import Text from "../common/Text.astro";
 import Button from "../common/Button.astro";
 import FadeIn from "../common/FadeIn.tsx";
@@ -7,9 +8,6 @@ import Youtube from "../../assets/logos/youtube.svg";
 import Facebook from "../../assets/logos/facebook.svg";
 
 const heroClasses = ["min-h-hero-y", "w-full", "flex", "bg-cream-100"];
-const heroImage =
-  "https://res.cloudinary.com/df1jrwt7n/image/upload/v1769984456/home_hero_wudbiw.jpg";
-// TODO: Make this image more dynamic or connect with cloudinary folder
 ---
 
 <section class:list={heroClasses} aria-labelledby="hero-title">
@@ -60,7 +58,16 @@ const heroImage =
     class:list={["hero-img", "hidden", "lg:block", "lg:w-[55%]", "relative"]}
   >
     <picture>
-      <img src={heroImage} class:list={["h-full", "w-full", "object-cover"]} />
+      <CldImage
+        src="home_hero_wudbiw"
+        width={1600}
+        height={900}
+        sizes="(max-width: 768px) 1px, 100vw"
+        alt="Parroquia de nuestra sra. Guadalupe"
+        class:list={["h-full", "w-full", "object-cover"]}
+        loading="eager"
+        fetchpriority="high"
+      />
     </picture>
     <div
       class:list={[

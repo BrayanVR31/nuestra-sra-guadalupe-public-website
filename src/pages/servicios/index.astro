@@ -3,13 +3,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero.astro";
 import ChurchServiceSection from "@/features/ChurchServices/ChurchServiceSection.astro";
 import ContainerLayout from "@/layouts/ContainerLayout.astro";
+import ServiciosImage from "@/assets/images/servicios.jpg";
 ---
 
 <BaseLayout title="servicios">
   <Hero
     title="Acompañándote en cada momento"
     description="Bautizos, bodas, misas especiales y más servicios para tu vida de fe."
-    image="/hero/servicios.jpg"
+    image={ServiciosImage}
   />
   <ContainerLayout>
     <ChurchServiceSection />

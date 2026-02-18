@@ -1,20 +1,4 @@
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc.js";
-import timezone from "dayjs/plugin/timezone.js";
-import "dayjs/locale/es-mx.js"; // By default you must be import with your locale language
-
-/**
- * This function initialize basic
- * configuration for dayjs library
- * */
-const initConf = () => {
-  const { APP_TIME_ZONE = "America/New_York", APP_LOCAL_LANG = "en" } =
-    import.meta.env;
-  dayjs.extend(utc);
-  dayjs.extend(timezone);
-  dayjs.tz.setDefault(APP_TIME_ZONE);
-  dayjs.locale(APP_LOCAL_LANG);
-};
+import dayjs from "./dayjs";
 
 type WeekResult = {
   human: string;
@@ -110,7 +94,6 @@ const matchScheduleStatus = (
  * helpers
  * */
 export const timeBootstrap = () => {
-  initConf();
   return {
     now: dayjs().format(),
     matchWeek,

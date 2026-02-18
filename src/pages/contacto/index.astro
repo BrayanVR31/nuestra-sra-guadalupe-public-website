@@ -3,13 +3,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero.astro";
 import ContainerLayout from "@/layouts/ContainerLayout.astro";
 import ContactSection from "@/features/Contact/ContactSection.astro";
+import ContactoHero from "@/assets/images/contacto.jpg";
 ---
 
 <BaseLayout title="contacto">
   <Hero
     title="Estamos aquí para ti"
     description="¿Necesitas ayuda o tienes alguna pregunta? Contáctanos."
-    image="/hero/contacto.jpg"
+    image={ContactoHero}
   />
   <ContainerLayout>
     <ContactSection />

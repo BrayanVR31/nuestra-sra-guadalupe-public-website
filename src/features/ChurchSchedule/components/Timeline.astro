@@ -1,9 +1,9 @@
 ---
-import { timeBootstrap } from "../../libs/easy-time";
-import type { ScheduleWeek } from "./schedule";
-import { format12h } from "../../libs/dayjs";
+import { timeBootstrap } from "@/libs/easy-time";
+import type { ScheduleWeek } from "../types/schedule.type";
+import { format12h } from "@/libs/dayjs";
 import ScheduleStatus from "./ScheduleStatus.astro";
-import { localZone, formatOptions } from "./constants";
+
 type Realtime = {
   type: "realtime";
   scheduleList: ScheduleWeek;
@@ -19,23 +19,6 @@ type Props = {} & (Realtime | Simple);
 const props = Astro.props;
 const { matchWeek, now } = timeBootstrap();
 const weeks = matchWeek(now);
-
-// Formateador de fecha
-const weekFormatter = new Intl.DateTimeFormat("en-US", {
-  weekday: "short",
-  day: "2-digit",
-  month: "short",
-  year: "numeric",
-  timeZone: "America/Mexico_City",
-});
-
-const dateOptions: Intl.DateTimeFormatOptions = {
-  timeZone: "America/Mexico_City",
-  weekday: "short",
-  year: "numeric",
-  month: "short",
-  day: "numeric",
-};
 ---
 
 <ol class="border-s border-neutral-300 dark:border-neutral-700 ms-4">
