@@ -8,16 +8,10 @@ import {
   getGospelReadingList,
   getGospelTitle,
 } from "@/libs/aciprensa";
-import { gospelPictures } from "../data/gospel-pictures";
 
 export const getDailyGospel = (
   channel: AciprensaRSS["rss"]["channel"],
 ): DailyGospel => {
-  const gospelTypes: GospelType[] = [
-    "primeraLectura",
-    "salmoResponsorial",
-    "evangelio",
-  ];
   const item = channel.item as RSSItem;
   return {
     title: getGospelTitle(item.title),
@@ -25,9 +19,20 @@ export const getDailyGospel = (
     publishedAt: dayjs(getGospelPublishedAt(item.pubDate)).format(
       "D [de] MMMM [de] YYYY",
     ),
-    readingList: getGospelReadingList(item.description).map((reading) => ({
-      ...reading,
-      type: gospelTypes?.shift(),
-    })),
+    readingList: getGospelReadingList(item.description).map(
+      (reading, index, array) => {
+        let type: GospelType;
+        // Match each reading category
+        if (index === array.length - 1) type = "evangelio";
+        else if (index === 0) type = "primeraLectura";
+        else if (reading.title.toLocaleLowerCase().includes("salmo"))
+          type = "salmoResponsorial";
+        else type = "segundaLectura";
+        return {
+          ...reading,
+          type,
+        };
+      },
+    ),
   };
 };

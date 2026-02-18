@@ -11,7 +11,7 @@ export default function CarouselGospel() {
         <>
           {data.readingList.map((reading) => (
             <div key={reading.title} className={`${slideClass}`}>
-              <CardGospel {...reading} />
+              <CardGospel category={data.title} {...reading} />
             </div>
           ))}
         </>

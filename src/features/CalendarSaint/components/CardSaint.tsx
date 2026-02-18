@@ -1,8 +1,8 @@
-import { CalendarFold, ExternalLink, ImageOff, MoveRight } from "lucide-react";
+import { CalendarFold, ExternalLink, MoveRight } from "lucide-react";
 import { useState } from "react";
 import { Image } from "@unpic/react";
 import type { Saint } from "../types/saint.type";
-import Modal from "../../../components/common/Modal";
+import Modal from "@/components/common/Modal";
 import SaintDetails from "./SaintDetails";
 
 interface CardSaintProps extends Saint {}

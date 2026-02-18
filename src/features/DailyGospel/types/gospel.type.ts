@@ -7,6 +7,7 @@ export type GospelReading = {
   title: string;
   verses: Verse[];
   type?: GospelType;
+  category?: string;
 };
 
 export type DailyGospel = {
@@ -16,4 +17,8 @@ export type DailyGospel = {
   readingList: GospelReading[];
 };
 
-export type GospelType = "primeraLectura" | "salmoResponsorial" | "evangelio";
+export type GospelType =
+  | "primeraLectura"
+  | "salmoResponsorial"
+  | "evangelio"
+  | "segundaLectura";

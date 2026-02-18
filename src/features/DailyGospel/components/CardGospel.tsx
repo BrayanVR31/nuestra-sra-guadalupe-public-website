@@ -8,8 +8,16 @@ import {
 } from "../data/gospel-pictures";
 import { cld } from "@/config/cloudinary";
 import { useState } from "react";
+import { MoveUpRight } from "lucide-react";
+import Modal from "@/components/common/Modal";
+import GospelDetails from "./GospelDetails";
 
-export default function CardGospel({ title, type, verses }: GospelReading) {
+export default function CardGospel({
+  title,
+  type,
+  verses,
+  category,
+}: GospelReading) {
   const [isOpen, setIsOpen] = useState(false);
   /*
   const resizeAction = fill()
@@ -36,7 +44,10 @@ export default function CardGospel({ title, type, verses }: GospelReading) {
       </figure>
       <div className="relative -mt-24 mx-auto w-[90%] bg-white p-6 rounded-2xl shadow-xl z-10">
         <header>
-          <p className="text-xs font-medium text-red-700 uppercase tracking-widest mb-1">
+          <span className="text-xs bg-violet-900/70 text-violet-200 px-3 py-1.5 rounded-3xl absolute top-0 -translate-y-1/2 font-semibold backdrop-blur-xs tracking-widest">
+            {category}
+          </span>
+          <p className="text-sm font-medium text-red-700 uppercase tracking-widest mb-1 line-clamp-1">
             {title}
           </p>
           <h5 className="text-xl font-bold text-neutral-700 leading-tight mb-4">
@@ -44,17 +55,35 @@ export default function CardGospel({ title, type, verses }: GospelReading) {
           </h5>
         </header>
 
-        <footer>
+        <footer className="flex justify-between items-center">
+          <button
+            className="inline-block text-ordinario font-bold text-sm hover: hover:text-ordinario/80 transition-colors cursor-pointer"
+            onClick={() => setIsOpen(true)}
+          >
+            Leer más
+          </button>
           <a
             href="https://www.ewtn.com/es/catolicismo/lecturas"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-ordinario font-bold text-sm hover: hover:text-ordinario/80 transition-colors"
+            className="inline-flex items-center justify-center w-7 h-7 border rounded-full text-ordinario border-ordinario font-bold text-sm hover: hover:text-ordinario/80 hover:bg-ordinario/10 transition-colors"
             aria-label={`Leer más sobre ${title}`}
           >
-            Leer más
+            <MoveUpRight className="w-3/5" />
           </a>
         </footer>
+        <Modal
+          title={gospelTitle[type!]}
+          isOpen={isOpen}
+          onClose={() => setIsOpen(false)}
+          size="xl"
+          showClose
+        >
+          <GospelDetails
+            reference="https://www.ewtn.com/es/catolicismo/lecturas"
+            verses={verses}
+          />
+        </Modal>
       </div>
     </article>
   );
