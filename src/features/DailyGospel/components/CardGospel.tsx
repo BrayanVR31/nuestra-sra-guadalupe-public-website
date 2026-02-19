@@ -44,7 +44,7 @@ export default function CardGospel({
       </figure>
       <div className="relative -mt-24 mx-auto w-[90%] bg-white p-6 rounded-2xl shadow-xl z-10">
         <header>
-          <span className="text-xs bg-violet-900/70 text-violet-200 px-3 py-1.5 rounded-3xl absolute top-0 -translate-y-1/2 font-semibold backdrop-blur-xs tracking-widest">
+          <span className="text-xs/relaxed bg-violet-900/70 text-violet-200 max-w-[145px] h-7 px-3 py-1.5 rounded-3xl absolute top-0 -translate-y-1/2 font-semibold backdrop-blur-xs tracking-widest line-clamp-1">
             {category}
           </span>
           <p className="text-sm font-medium text-red-700 uppercase tracking-widest mb-1 line-clamp-1">

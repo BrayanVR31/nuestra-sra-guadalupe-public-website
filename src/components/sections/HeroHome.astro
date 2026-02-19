@@ -7,7 +7,13 @@ import SocialNetwork from "../common/SocialNetwork.astro";
 import Youtube from "../../assets/logos/youtube.svg";
 import Facebook from "../../assets/logos/facebook.svg";
 
-const heroClasses = ["min-h-hero-y", "w-full", "flex", "bg-cream-100"];
+const heroClasses = [
+  "min-h-hero-y",
+  "w-full",
+  "flex",
+  "bg-cream-100",
+  "relative",
+];
 ---
 
 <section class:list={heroClasses} aria-labelledby="hero-title">
@@ -20,11 +26,15 @@ const heroClasses = ["min-h-hero-y", "w-full", "flex", "bg-cream-100"];
       "px-8",
       "md:px-16",
       "py-12",
-      "lg:text-left",
+      "min-[1366px]:text-left",
       "flex-1",
+      "min-[820px]:max-[1366px]:z-2",
+      "min-[820px]:max-[1366px]:min-w-full",
     ]}
   >
-    <div>
+    <div
+      class="min-[820px]:max-[1366px]:max-w-xl min-[820px]:max-[1366px]:mx-auto min-[820px]:max-[1366px]:bg-cream-200/65 min-[820px]:max-[1366px]:backdrop-blur-xs min-[820px]:max-[1366px]:py-8 min-[820px]:max-[1366px]:px-16 min-[820px]:max-[1366px]:rounded-md"
+    >
       <!-- Title -->
       <FadeIn client:visible>
         <Text
@@ -33,12 +43,16 @@ const heroClasses = ["min-h-hero-y", "w-full", "flex", "bg-cream-100"];
           class="text-neutral-800 split-animate"
         >
           Bienvenidos a la Parroquia de nuestra
-          <span class="text-gold-600">Sra. de Guadalupe</span>
+          <span class="text-gold-600 min-[820px]:max-[1366px]:text-gold-800"
+            >Sra. de Guadalupe</span
+          >
         </Text>
       </FadeIn>
       <!-- Description -->
       <FadeIn client:visible delay={0.2}>
-        <Text variant="large-paragraph" class="mt-5 text-neutral-600"
+        <Text
+          variant="large-paragraph"
+          class="mt-5 text-neutral-600 min-[820px]:max-[1366px]:text-gray-800"
           >Encuentra horarios de misa, servicios parroquiales y preparación para
           los sacramentos.</Text
         >
@@ -55,8 +69,18 @@ const heroClasses = ["min-h-hero-y", "w-full", "flex", "bg-cream-100"];
   </article>
   <!-- Hero image with clip path -->
   <div
-    class:list={["hero-img", "hidden", "lg:block", "lg:w-[55%]", "relative"]}
+    class:list={[
+      "hero-img",
+      "hidden",
+      "min-[820px]:block",
+      "lg:w-[55%]",
+      "min-[1366px]:relative",
+    ]}
   >
+    <div
+      class="min-[820px]:max-[1366px]:block hidden absolute inset-0 bg-stone-950/20 h-full w-full z-1"
+    >
+    </div>
     <picture>
       <CldImage
         src="home_hero_wudbiw"
@@ -64,7 +88,15 @@ const heroClasses = ["min-h-hero-y", "w-full", "flex", "bg-cream-100"];
         height={900}
         sizes="(max-width: 768px) 100vw, 784px"
         alt="Parroquia de nuestra sra. Guadalupe"
-        class:list={["h-full", "w-full", "object-cover"]}
+        class:list={[
+          "h-full!",
+          "max-h-full!",
+          "w-full",
+          "object-cover",
+          "min-[820px]:max-[1366px]:absolute!",
+          "min-[820px]:max-[1366px]:top-0",
+          "min-[820px]:max-[1366px]:left-0",
+        ]}
         loading="eager"
         fetchpriority="high"
       />
@@ -79,6 +111,7 @@ const heroClasses = ["min-h-hero-y", "w-full", "flex", "bg-cream-100"];
         "flex",
         "flex-col",
         "shadow-lg",
+        "min-[820px]:max-[1366px]:z-2",
       ]}
     >
       <SocialNetwork
@@ -98,7 +131,9 @@ const heroClasses = ["min-h-hero-y", "w-full", "flex", "bg-cream-100"];
 </section>
 
 <style>
-  .hero-img {
-    clip-path: polygon(10% 0, 100% 0%, 100% 100%, 0 100%);
+  @media (min-width: 1366px) {
+    .hero-img {
+      clip-path: polygon(10% 0, 100% 0%, 100% 100%, 0 100%);
+    }
   }
 </style>

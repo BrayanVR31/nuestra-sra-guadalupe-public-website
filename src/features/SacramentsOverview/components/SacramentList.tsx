@@ -20,7 +20,7 @@ export default function SacramentList() {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className="grid md:grid-cols-3 gap-10"
+      className="grid min-[1366px]:grid-cols-3 gap-10 min-[820px]:max-[1366px]:grid-cols-2 items-center"
     >
       {sacraments.map(({ id, ...sacrament }) => (
         <CardSlideUp key={id} {...sacrament} />

@@ -72,10 +72,10 @@ const leftOverlayImage = "jpeg-optimizer_jesus_vhcxqo";
     ]}
   >
     <footer
-      class="text-white flex md:flex-row flex-col items-baseline md:pr-6 md:pl-20 md:gap-0 gap-10"
+      class="text-white flex min-[1366px]:flex-row flex-col items-baseline md:pr-6 md:pl-20 md:gap-0 gap-10"
     >
       <!-- General section -->
-      <div class="flex-[1.5]">
+      <div class="flex-[1.5] min-[820px]:max-[1366px]:py-6">
         <Heading>NuestraSraGuadalupe.com</Heading>
         <p class="text-gray-300 max-w-56 text-base/7 text-start text-pretty">
           Entérate de los avisos parroquiales, cambios de horario y eventos
@@ -83,7 +83,9 @@ const leftOverlayImage = "jpeg-optimizer_jesus_vhcxqo";
         </p>
       </div>
       <!-- Menu section -->
-      <div class="flex-3 md:gap-0 gap-6 grid grid-cols-1 md:grid-cols-3">
+      <div
+        class="flex-3 min-[1366px]:gap-0 gap-6 grid grid-cols-1 md:grid-cols-3 min-[820px]:max-[1366px]:pb-6 min-[820px]:max-[1366px]:gap-4"
+      >
         <List title="Sitio web">
           <div class="flex flex-col gap-3 text-gray-300">
             <Link withArrow resourcePath="/">Inicio</Link>

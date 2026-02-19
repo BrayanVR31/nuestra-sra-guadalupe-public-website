@@ -6,6 +6,7 @@ import AnnouncementsSection from "@/features/AnnouncementList/AnnouncementsSecti
 import ContainerLayout from "@/layouts/ContainerLayout.astro";
 import CalendarSaintSection from "@/features/CalendarSaint/CalendarSaintSection.astro";
 import DailyGospelSection from "@/features/DailyGospel/DailyGospelSection.astro";
+import HolyMassSection from "@/features/HolyMass/HolyMassSection.astro";
 ---
 
 <BaseLayout
@@ -20,7 +21,7 @@ import DailyGospelSection from "@/features/DailyGospel/DailyGospelSection.astro"
   <ContainerLayout>
     <SacramentsOverviewSection />
     <div
-      class="min-h-svh grid grid-cols-(--website-cols) max-sm:grid-cols-1 gap-16"
+      class="min-h-svh grid grid-cols-(--website-cols) max-sm:grid-cols-1 gap-16 min-[820px]:max-[1366px]:grid-cols-1 py-10"
     >
       <AnnouncementsSection />
       <aside>
@@ -28,5 +29,7 @@ import DailyGospelSection from "@/features/DailyGospel/DailyGospelSection.astro"
         <DailyGospelSection />
       </aside>
     </div>
+
+    <HolyMassSection />
   </ContainerLayout>
 </BaseLayout>

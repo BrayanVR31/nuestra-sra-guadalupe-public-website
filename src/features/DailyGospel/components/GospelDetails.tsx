@@ -11,7 +11,7 @@ export default function GospelDetails({
     <article className="flex flex-col h-full max-w-2xl mx-auto bg-cream-200 rounded-lg overflow-hidden">
       {reference && (
         <header className="px-6 py-4 border-b border-stone-200 bg-cream-100/50">
-          <h2 className="text-lg font-bold text-gold-800 tracking-wide text-center">
+          <h2 className="text-lg font-bold text-gold-800 tracking-wide text-center truncate">
             <cite className="not-italic">{reference}</cite>
           </h2>
         </header>
