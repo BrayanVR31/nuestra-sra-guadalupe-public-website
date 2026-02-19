@@ -2,8 +2,7 @@ import type { Sacrament } from "../types/sacrament.type";
 
 export const sacraments: Sacrament[] = [
   {
-    image:
-      "https://res.cloudinary.com/df1jrwt7n/image/upload/w_600/v1771010435/bautismo_pw60we.jpg",
+    image: "bautismo_pw60we",
     title: "REQUISITOS PARA BAUTISMO",
     items: [
       {
@@ -35,8 +34,7 @@ export const sacraments: Sacrament[] = [
     ],
   },
   {
-    image:
-      "https://res.cloudinary.com/df1jrwt7n/image/upload/w_600/v1771012878/bodas_fyfvei.jpg",
+    image: "bodas_fyfvei",
     title: "REQUISITOS PARA MATRIMONIO",
     items: [
       {

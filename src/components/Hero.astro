@@ -22,9 +22,11 @@ const { title, description, image } = Astro.props;
         widths={[640, 1024, 1920]}
         sizes="100vw"
         src={image}
-        alt=""
+        alt={title}
         formats={["avif", "webp"]}
         class="absolute inset-0 w-full h-full object-cover object-center"
+        fetchpriority="high"
+        loading="eager"
       />
     </div>
   </div>

@@ -1,4 +1,5 @@
 ---
+import { CldImage } from "astro-cloudinary";
 import type { Sacrament } from "../types/sacrament.type";
 // src/components/ServiceCard.astro
 interface Props extends Sacrament {}
@@ -12,7 +13,17 @@ const { title, items, extraInfo, footerInfo, price, note, image } = Astro.props;
   <figure
     class="overflow-hidden grow-0 shrink-0 rounded-xl w-full md:basis-1/3 basis-56"
   >
-    <img class="w-full h-full object-cover" src={image} />
+    <CldImage
+      src={image}
+      alt={title}
+      width={400}
+      height={350}
+      format="auto"
+      quality="auto"
+      sizes="(max-width: 600px) 100vw, 400px"
+      loading="lazy"
+      class="w-full max-h-full! h-full object-cover"
+    />
   </figure>
   <div class="flex flex-col h-full font-secondary">
     <h4 class="text-xl font-bold text-[#006957] mb-4 border-b pb-2">{title}</h4>
