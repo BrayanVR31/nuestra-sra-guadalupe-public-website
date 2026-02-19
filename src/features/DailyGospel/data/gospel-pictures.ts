@@ -19,23 +19,23 @@ export const gospelTitle: Record<GospelType, string> = {
 
 export const resizeAction = {
   salmoResponsorial: thumbnail()
-    .width(640)
-    .height(750)
+    .width(320)
+    .height(400)
     .gravity(focusOn(FocusOn.faces()))
     .zoom(0.4),
   segundaLectura: thumbnail()
-    .width(640)
-    .height(750)
+    .width(320)
+    .height(400)
     .gravity(focusOn(FocusOn.faces()))
     .zoom(0.4),
   primeraLectura: thumbnail()
-    .width(640)
-    .height(750)
+    .width(320)
+    .height(400)
     .gravity(focusOn(FocusOn.faces()))
     .zoom(0.4),
   evangelio: thumbnail()
-    .width(750)
-    .height(750)
+    .width(320)
+    .height(320)
     .gravity(focusOn(FocusOn.faces()))
     .zoom(0.2),
 };

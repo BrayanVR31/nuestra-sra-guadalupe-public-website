@@ -35,7 +35,7 @@ export default function CardGospel({
         <AdvancedImage
           cldImg={gospelImage}
           plugins={[
-            responsive({ steps: [640, 768, 1024] }),
+            responsive({ steps: [200, 280, 320] }),
             placeholder({ mode: "blur" }),
           ]}
           className="transition-transform duration-500 group-hover:scale-110 w-full h-full object-cover"

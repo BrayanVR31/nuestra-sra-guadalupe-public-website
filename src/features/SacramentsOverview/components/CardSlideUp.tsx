@@ -1,6 +1,7 @@
 import { cld } from "@/config/cloudinary";
 import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
 import { format, quality } from "@cloudinary/url-gen/actions/delivery";
+import { scale } from "@cloudinary/url-gen/actions/resize";
 import { type Easing, type Variants, motion } from "motion/react";
 
 interface CardSlideUpProps {
@@ -40,7 +41,10 @@ export default function CardSlideUp({
   path,
 }: CardSlideUpProps) {
   const sacramentImage = cld.image(image);
-  sacramentImage.delivery(format("auto")).delivery(quality("auto"));
+  sacramentImage
+    .resize(scale().width(1024))
+    .delivery(format("auto"))
+    .delivery(quality("auto"));
   return (
     <motion.article
       variants={variants}
