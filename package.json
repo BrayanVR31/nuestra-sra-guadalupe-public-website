@@ -15,6 +15,8 @@
     "@astrojs/vercel": "^9.0.4",
     "@cloudinary/react": "^1.14.4",
     "@cloudinary/url-gen": "^1.22.0",
+    "@fontsource/buenard": "^5.2.11",
+    "@fontsource/plus-jakarta-sans": "^5.2.8",
     "@headlessui/react": "^2.2.9",
     "@lucide/astro": "^0.562.0",
     "@react-leaflet/core": "^3.0.0",

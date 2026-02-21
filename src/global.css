@@ -1,8 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap");
 @import "tailwindcss";
 
 /* --- Movimiento Suave --- */
@@ -66,9 +61,8 @@
   --announcement-rows: repeat(auto-fill, var(--announcement-auto-row));
   --schedule-cols: repeat(2, minmax(35%, 450px));
   /**============== Font variation for (heading, hero titles, paragraphs, etc.) ==============*/
-  --font-logo: "Merriweather", sans-serif;
-  --font-primary: "Cormorant Garamond", sans-serif;
-  --font-secondary: "Google Sans", serif;
+  --font-primary: "Buenard", serif;
+  --font-secondary: "Plus Jakarta Sans", sans-serif;
   /** Swiper css variables **/
   --sp-pagination: #f5f2f2;
   --sp-navigation: #f5f2f2;

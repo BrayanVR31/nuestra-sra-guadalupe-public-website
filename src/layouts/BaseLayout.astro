@@ -1,4 +1,13 @@
 ---
+// ========== Font Primary ==========
+import "@fontsource/buenard/400.css";
+import "@fontsource/buenard/600.css";
+import "@fontsource/buenard/700.css";
+// ========== Font Secondary ==========
+import "@fontsource/plus-jakarta-sans/400.css";
+import "@fontsource/plus-jakarta-sans/600.css";
+import "@fontsource/plus-jakarta-sans/700.css";
+
 import { ClientRouter } from "astro:transitions";
 import "@/global.css";
 import Navigation from "@/components/navbar/Navigation.astro";
@@ -21,8 +30,6 @@ const { title, meta } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nuestra Sra. Guadalupe | {title}</title>
     <!-- Google fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="shortcut icon" href="/favicon.ico" />

@@ -20,7 +20,7 @@ interface Props extends HTMLAttributes<any> {
 const { variant = "normal-paragraph", ...htmlAttr } = Astro.props;
 const titleSettings: Record<TextVariants, TextSettings> = {
   hero: {
-    classes: ["font-primary", "text-6xl/16", "font-bold"],
+    classes: ["font-primary", "text-6xl/16", "font-semibold"],
     tagName: "h1",
   },
   "main-title": {
