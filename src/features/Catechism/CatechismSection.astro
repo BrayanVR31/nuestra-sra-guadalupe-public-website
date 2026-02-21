@@ -1,0 +1,55 @@
+---
+import CatechismCard from "./components/CatechismCard";
+import CatechismGrid from "./components/CatechismGrid";
+import CatechismList from "./components/CatechismList";
+import { catechismList, catechismAdultList } from "./data/catechism";
+import { getOptimizeImages } from "./utils/optimize-images";
+
+const { catechismTop, catechismBottom } = await getOptimizeImages();
+---
+
+<section class="my-18" id="catechism-overview" aria-labelledby="catchism-title">
+  <!-- Heading section -->
+  <div
+    class="flex flex-col flex-wrap md:**:w-max items-center gap-4 mx-auto mb-10"
+  >
+    <span class="text-base text-center text-gold-700"
+      >Nutriendo la Fe en la Comunidad</span
+    >
+    <h3
+      class="font-secondary font-semibold text-4xl text-center uppercase tracking-wider text-neutral-800"
+      id="catchism-title"
+    >
+      Catequesis
+    </h3>
+  </div>
+  <CatechismGrid client:load>
+    <CatechismCard
+      image={{
+        avif: catechismBottom.avif.src,
+        webp: catechismBottom.webp.src,
+        fallback: catechismBottom.fallback.src,
+        width: 800,
+        height: 513,
+      }}
+      title="Inicio de Ciclo"
+      client:load
+    >
+      <CatechismList items={catechismList} />
+    </CatechismCard>
+    <CatechismCard
+      image={{
+        avif: catechismTop.avif.src,
+        webp: catechismTop.webp.src,
+        fallback: catechismTop.fallback.src,
+        width: 800,
+        height: 513,
+      }}
+      title="Catequesis para Adultos"
+      isReverse
+      client:load
+    >
+      <CatechismList items={catechismAdultList} />
+    </CatechismCard>
+  </CatechismGrid>
+</section>
