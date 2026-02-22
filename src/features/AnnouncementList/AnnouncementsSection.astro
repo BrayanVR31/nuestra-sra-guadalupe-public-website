@@ -3,6 +3,7 @@ import { announcements } from "./data/announcements";
 import GridContainer from "./components/grid/GridContainer";
 import GridItem from "./components/grid/GridItem";
 import AnnouncementCard from "./components/AnnouncementCard.astro";
+import NoData from "@/assets/svg/no_data.svg";
 ---
 
 <section id="announcement-list" aria-labelledby="announcement-title">
@@ -24,11 +25,23 @@ import AnnouncementCard from "./components/AnnouncementCard.astro";
     templateCols="repeat(auto-fill, minmax(300px, 1fr))"
   >
     {
-      announcements.map((announcement) => (
-        <GridItem transition:animate="fade" client:load>
-          <AnnouncementCard {...announcement} />
-        </GridItem>
-      ))
+      announcements.length > 0 ? (
+        announcements.map((announcement) => (
+          <GridItem transition:animate="fade" client:load>
+            <AnnouncementCard {...announcement} />
+          </GridItem>
+        ))
+      ) : (
+        <div class="text-center justify-self-center col-span-2">
+          <NoData class="w-[75%]" />
+          <h4 class="font-bold text-3xl text-gold-600 mb-6 w-[90%] mx-auto">
+            No hay anuncios vigentes
+          </h4>
+          <p class="text-base text-stone-800 w-[90%] mx-auto">
+            Vuelve pronto para enterarte de nuestras próximas actividades.
+          </p>
+        </div>
+      )
     }
   </GridContainer>
 </section>
