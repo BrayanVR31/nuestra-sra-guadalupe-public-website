@@ -4,6 +4,7 @@ import GridContainer from "./components/grid/GridContainer";
 import GridItem from "./components/grid/GridItem";
 import AnnouncementCard from "./components/AnnouncementCard.astro";
 import NoData from "@/assets/svg/no_data.svg";
+const hasAnnouncement = announcements.length > 0;
 ---
 
 <section id="announcement-list" aria-labelledby="announcement-title">
@@ -20,28 +21,41 @@ import NoData from "@/assets/svg/no_data.svg";
       Avisos a la Comunidad
     </h3>
   </div>
-  <GridContainer
-    client:load
-    templateCols="repeat(auto-fill, minmax(300px, 1fr))"
-  >
-    {
-      announcements.length > 0 ? (
-        announcements.map((announcement) => (
+  {
+    hasAnnouncement ? (
+      <GridContainer
+        client:load
+        templateCols="repeat(auto-fill, minmax(300px, 1fr))"
+      >
+        {announcements.map((announcement) => (
           <GridItem transition:animate="fade" client:load>
             <AnnouncementCard {...announcement} />
           </GridItem>
-        ))
-      ) : (
-        <div class="text-center justify-self-center col-span-2">
-          <NoData class="w-[75%]" />
-          <h4 class="font-bold text-3xl text-gold-600 mb-6 w-[90%] mx-auto">
+        ))}
+      </GridContainer>
+    ) : (
+      <div class="flex flex-col justify-center items-center text-center gap-10">
+        <div class="w-1/2 md:w-1/4">
+          <NoData class="w-full h-full" />
+        </div>
+        <div>
+          <h4 class="font-bold text-3xl text-gold-600 mb-2 max-w-sm mx-auto px-6">
             No hay anuncios vigentes
           </h4>
-          <p class="text-base text-stone-800 w-[90%] mx-auto">
+          <p class="text-base/loose text-stone-800 max-w-sm mx-auto">
             Vuelve pronto para enterarte de nuestras próximas actividades.
           </p>
         </div>
-      )
-    }
-  </GridContainer>
+      </div>
+    )
+  }
 </section>
+
+<!--
+
+        <div class="text-center justify-self-center col-span-2">
+          
+          
+        </div>
+
+-->
