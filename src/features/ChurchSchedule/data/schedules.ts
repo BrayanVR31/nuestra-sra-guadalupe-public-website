@@ -38,8 +38,8 @@ export const churchSchedules: ScheduleTimeline[] = [
           slot: "timeline",
           schedules: [
             {
-              time: "Lunes a sábados",
-              tags: ["07:00 AM a 08:00 PM"],
+              time: "Lunes a domingo",
+              tags: ["09:00 AM a 01:00 PM", "4:00 PM a 8:00 PM"],
             },
           ],
         },
