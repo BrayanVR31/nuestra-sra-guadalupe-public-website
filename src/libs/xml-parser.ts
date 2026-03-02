@@ -8,15 +8,15 @@ const saintRegex = /feast date:.+[0-9]{1,2}(?=[a-zA-Z])/gi;
 
 interface ChannelItem {
   title: string;
-};
+}
 
 interface RSSFeed {
   rss: {
     channel: {
       item: ChannelItem;
     };
-  }
-};
+  };
+}
 
 /***
  * Try to parse each value throught desired keys
@@ -25,29 +25,43 @@ interface RSSFeed {
 export const getRSSFeed = <T>(rssDoc: string, ...rssKeys: string[]) => {
   const xmlParser = new XMLParser({
     ignoreAttributes: false,
-    attributeNamePrefix: ""
+    attributeNamePrefix: "",
   });
   const xml: RSSFeed = xmlParser.parse(rssDoc);
   return _.get(xml, rssKeys, "") as T;
-}
+};
 
+/***
+ * Try to parse each value throught desired keys
+ * on xml format
+ */
+export const findXMLItems = <ParsedObject>(xml: string, ...items: string[]) => {
+  const xmlParser = new XMLParser({
+    ignoreAttributes: false,
+    attributeNamePrefix: "",
+  });
+  const parseXml = xmlParser.parse(xml);
+  return _.get(parseXml, items, "") as ParsedObject;
+};
 
 /**
  * Receieve an html string representation
  * and convert it into object format
  */
-export const parseJSONSaint = (htmlTxt: string): Omit<CurrentSaint, "title" | "link"> => {
+export const parseJSONSaint = (
+  htmlTxt: string,
+): Omit<CurrentSaint, "title" | "link"> => {
   // Custom selector
   const $ = cheerio.load(htmlTxt);
   const paragraphs = $("p").text();
   const content = paragraphs.replace(saintRegex, "").trim();
   const htmlImage = $("img").toString();
-  const image = serializeURL(htmlImage ?? "")
+  const image = serializeURL(htmlImage ?? "");
   return {
     image,
     content,
-  }
-}
+  };
+};
 
 /***
  * This function takes as an argument and
@@ -60,10 +74,10 @@ const serializeURL = (malformedURL: string) => {
   if (startIndex === -1) return "";
   let result = malformedURL.substring(startIndex);
   result = result
-    .replace(/&quot;/g, '')
-    .replace(/\\"/g, '')
-    .replace(/<\/?[^>]+>/g, '')
-    .replace(/[">]/g, '')
-    .replace(/\s.*/g, '');
+    .replace(/&quot;/g, "")
+    .replace(/\\"/g, "")
+    .replace(/<\/?[^>]+>/g, "")
+    .replace(/[">]/g, "")
+    .replace(/\s.*/g, "");
   return result.trim();
-}
+};

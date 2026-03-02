@@ -1,5 +1,6 @@
 ---
-import YouTubeEmbed from "@/components/common/YouTubeEmbed.astro";
+import CatholicStream from "./components/CatholicStream";
+export const prerender = false;
 ---
 
 <div
@@ -15,9 +16,6 @@ import YouTubeEmbed from "@/components/common/YouTubeEmbed.astro";
     Santa Misa en Vivo
   </h3>
 </div>
-<div class="max-w-4xl mx-auto">
-  <YouTubeEmbed
-    title="YouTube video player"
-    id="786MggrEGmQ?si=URADob4JsTG6_7_4"
-  />
+<div class="max-w-4xl mx-auto pb-8">
+  <CatholicStream client:only />
 </div>
