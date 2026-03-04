@@ -1,42 +1,35 @@
 // TODO: Remove this file and fetch from API
-import announcementSampleImage from "@/assets/images/announcement_sample.jpg";
+import retiroCuaresma from "@/assets/images/retiro_cuaresma.jpeg";
+import dayjs from "@/libs/dayjs";
 import type { Announcement } from "../types/announcement.type";
 
-const isExperimental = true;
+const isExperimental = false;
 
 export const announcements: Announcement[] = !isExperimental
   ? [
       {
         id: 1,
-        image: announcementSampleImage,
-        title: "Aviso ejemplo",
+        image: retiroCuaresma,
+        title: "Reconociendo nuestras cadenas",
         content:
-          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere maiores officiis veniam qui nostrum sit minima aspernatur, possimus eius exercitationem hic distinctio, non modi accusantium accusamus corrupti molestias, totam commodi.",
-        publishedAt: new Date("2026-01-09T15:00:00"),
+          "Se les invita a todos los coordinadores junto con sus integrantes asistir al retiro.",
+        publishedAt: dayjs("2026-03-03").toDate(),
       },
       {
         id: 2,
-        image: announcementSampleImage,
-        title: "Aviso ejemplo",
+        image: retiroCuaresma,
+        title: "La esperanza en medio de la esclavitud (Hora santa)",
         content:
-          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere maiores officiis veniam qui nostrum sit minima aspernatur, possimus eius exercitationem hic distinctio, non modi accusantium accusamus corrupti molestias, totam commodi.",
-        publishedAt: new Date("2026-01-11T15:00:00"),
+          "Se les invita a todos los coordinadores junto con sus integrantes asistir al retiro.",
+        publishedAt: dayjs("2026-03-03").toDate(),
       },
       {
         id: 3,
-        image: announcementSampleImage,
-        title: "Aviso ejemplo",
+        image: retiroCuaresma,
+        title: "Cuaresma como tiempo de conversión",
         content:
-          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere maiores officiis veniam qui nostrum sit minima aspernatur, possimus eius exercitationem hic distinctio, non modi accusantium accusamus corrupti molestias, totam commodi.",
-        publishedAt: new Date("2025-01-10T15:00:00"),
-      },
-      {
-        id: 4,
-        image: announcementSampleImage,
-        title: "Aviso ejemplo",
-        content:
-          "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere maiores officiis veniam qui nostrum sit minima aspernatur, possimus eius exercitationem hic distinctio, non modi accusantium accusamus corrupti molestias, totam commodi.",
-        publishedAt: new Date("2025-12-27T15:00:00"),
+          "Se les invita a todos los coordinadores junto con sus integrantes asistir al retiro.",
+        publishedAt: dayjs("2026-03-03").toDate(),
       },
     ]
   : [];
