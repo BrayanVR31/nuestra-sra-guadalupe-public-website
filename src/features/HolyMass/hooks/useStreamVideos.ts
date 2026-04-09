@@ -1,30 +1,49 @@
 import { useEffect, useState } from "react";
-import type { StreamVideos } from "../types/stream.type";
+import type { YoutubeAPIResource, YouTubeItem } from "@/types/youtube-rss";
+
+type FetchState = "loading" | "success" | "error";
 
 export default function useStreamVideos() {
-  const [playlist, setPlaylist] = useState<StreamVideos | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const getPlaylist = async () => {
+  const [playlist, setPlaylist] = useState<YoutubeAPIResource | null>(null);
+  const [videoPreview, setVideoPreview] = useState<YouTubeItem | null>(null);
+  const [state, setState] = useState<FetchState>("loading");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  const getPlaylist = async (signal: AbortSignal) => {
+    setState("loading");
     try {
-      const response = await fetch("/api/stream-recording.json");
-      const data = await response.json();
+      const response = await fetch("/api/stream-recording.json", { signal });
+
+      if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
+
+      const data: YoutubeAPIResource = await response.json();
+
       setPlaylist(data);
-      setIsSuccess(true);
+      if (data.playlist.length > 0) setVideoPreview(data.playlist[0]);
+      setState("success");
     } catch (error) {
-      setIsError(true);
-    } finally {
-      setIsLoading(false);
+      if (error instanceof DOMException && error.name === "AbortError") return;
+      setErrorMsg(error instanceof Error ? error.message : "Error desconocido");
+      setState("error");
     }
   };
+
   useEffect(() => {
-    getPlaylist();
+    const controller = new AbortController();
+    getPlaylist(controller.signal);
+    return () => controller.abort();
   }, []);
+
   return {
     data: playlist,
-    isLoading,
-    isSuccess,
-    isError,
+    isLoading: state === "loading",
+    isSuccess: state === "success",
+    isError: state === "error",
+    errorMsg,
+    videoPreview,
+    retry: () => {
+      const controller = new AbortController();
+      getPlaylist(controller.signal);
+    },
   };
 }

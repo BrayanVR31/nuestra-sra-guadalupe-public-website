@@ -33,3 +33,42 @@ export type YoutubeRSS = {
   published: string;
   entry: YoutubeEntry[];
 };
+
+export type RSS2Feed = {
+  url: string;
+  title: string;
+  link: string;
+  author: string;
+  description: string;
+  image: string;
+};
+
+export type RSS2YoutubeItem = {
+  title: string;
+  pubDate: string;
+  link: string;
+  guid: string;
+  author: string;
+  thumbnail: string;
+  description: string;
+  content: string;
+};
+
+export type RSS2APIResource = {
+  status: "ok";
+  feed: RSS2Feed;
+  items: RSS2YoutubeItem[];
+};
+
+export type YouTubeItem = {
+  videoId: string;
+  title: string;
+  thumbnailPreview: string;
+  totalViews: string;
+  publishedAt: string;
+  url: string;
+}
+
+export type YoutubeAPIResource = {
+  playlist: YouTubeItem[];
+};

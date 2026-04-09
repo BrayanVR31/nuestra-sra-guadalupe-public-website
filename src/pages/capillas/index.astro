@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ContainerLayout from "@/layouts/ContainerLayout.astro";
+import BelowFold from "@/layouts/below-fold.astro";
+---
+
+<BaseLayout meta={{ description: "" }}>
+  <ContainerLayout>
+    <BelowFold
+      description="Encuentra horarios de misa, inscripciones a catequesis y la ubicación de cada una de nuestras capillas."
+      subHeading="Ubicaciones, misas y catequesis"
+      heading="Nuestras capillas"
+    >
+      <article>
+        <h4 class="font-semibold text-2xl text-center tracking-wide">
+          Capilla <span class="text-amber-600 underline underline-offset-7"
+            >Santa Rosa</span
+          >
+        </h4>
+        <figure>
+          <img/>
+        </figure>
+      </article>
+    </BelowFold>
+  </ContainerLayout>
+</BaseLayout>

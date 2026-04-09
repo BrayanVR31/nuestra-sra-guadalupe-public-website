@@ -1,0 +1,12 @@
+---
+import TodayVideo from "./TodayVideo";
+// Fetch lastest videos added by youtube channel
+const apiUrl = new URL("/api/stream-recording.json", Astro.url);
+const youtubePlaylist = await fetch(apiUrl);
+const videosResponse = await youtubePlaylist.json();
+const error = videosResponse?.error ?? null;
+const [lastVideo, ...videos] = videosResponse.playlist ?? [];
+console.log(videosResponse);
+---
+
+{error ? <span>Error</span> : <TodayVideo url={lastVideo.url} />}
