@@ -1,7 +1,9 @@
 import { cld } from "@/config/cloudinary";
 import { AdvancedImage, responsive, placeholder } from "@cloudinary/react";
+import { improve, saturation, sharpen } from "@cloudinary/url-gen/actions/adjust";
 import { format, quality } from "@cloudinary/url-gen/actions/delivery";
-import { scale } from "@cloudinary/url-gen/actions/resize";
+import { crop, fill } from "@cloudinary/url-gen/actions/resize";
+import { autoGravity, compass } from "@cloudinary/url-gen/qualifiers/gravity";
 import { type Easing, type Variants, motion } from "motion/react";
 
 interface CardSlideUpProps {
@@ -11,6 +13,7 @@ interface CardSlideUpProps {
   overlayColor: string;
   foreground: string;
   path: string;
+  direction: string;
 }
 
 const ease: Easing = [0.22, 1, 0.36, 1];
@@ -39,10 +42,13 @@ export default function CardSlideUp({
   overlayColor,
   foreground,
   path,
+  direction
 }: CardSlideUpProps) {
   const sacramentImage = cld.image(image);
   sacramentImage
-    .resize(scale().width(1024))
+    .resize(
+      crop().width(1024).height(1024).gravity(compass(direction))
+    )
     .delivery(format("auto"))
     .delivery(quality("auto"));
   return (

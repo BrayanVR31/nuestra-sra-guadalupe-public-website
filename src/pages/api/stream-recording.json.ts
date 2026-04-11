@@ -1,8 +1,8 @@
-import { getYoutubeList } from "@/libs/stream-youtube";
 import type { APIRoute } from "astro";
 import { getCache, saveCache, type BaseCacheResource } from "@/libs/local-cache";
 import { CacheFiles } from "@/config/cache-api";
-import type { YoutubeAPIResource, RSS2APIResource, YouTubeItem } from "@/types/youtube-rss";
+import type { RSS2APIResource, YouTubeItem } from "@/types/youtube-rss";
+export const prerender = false;
 
 
 export const GET: APIRoute = async () => {

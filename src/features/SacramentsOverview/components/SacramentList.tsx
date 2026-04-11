@@ -1,5 +1,5 @@
 import { type Variants, motion } from "motion/react";
-import CardSlideUp from "./CardSlideUp";
+import SacramentCard from "./sacrament-card";
 import { sacraments } from "../data/sacraments";
 
 const variants: Variants = {
@@ -15,6 +15,16 @@ const variants: Variants = {
 
 export default function SacramentList() {
   return (
+    <div className="grid gap-16">
+      {sacraments.map((sacrament) => (
+        <SacramentCard {...sacrament} key={sacrament.id} />
+      ))}
+    </div>
+  );
+}
+
+/*
+  return (
     <motion.div
       variants={variants}
       initial="hidden"
@@ -27,4 +37,4 @@ export default function SacramentList() {
       ))}
     </motion.div>
   );
-}
+  */
