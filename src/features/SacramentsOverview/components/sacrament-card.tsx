@@ -4,8 +4,22 @@ import type { SacramentItem } from "../data/sacraments";
 import { crop } from "@cloudinary/url-gen/actions/resize";
 import { compass } from "@cloudinary/url-gen/qualifiers/gravity";
 import HighlightText from "@/components/common/HighlightText";
+import { motion, type Variants } from "motion/react";
 
 interface SacramentCardProps extends SacramentItem { };
+
+const cardVariants: Variants = {
+  hidden: {
+    opacity: 0.4,
+    translateY: 200,
+    scale: 0.95
+  },
+  enter: {
+    opacity: 1,
+    translateY: 0,
+    scale: 1
+  }
+};
 
 export default function SacramentCard({ image, category, title, path, description, direction, highlights = [] }: SacramentCardProps) {
   const cardImage = cld.image(image);
@@ -14,8 +28,13 @@ export default function SacramentCard({ image, category, title, path, descriptio
       crop().width(1024).height(1024).gravity(compass(direction))
     );
   return (
-    <article className="flex flex-col lg:flex-row lg:even:flex-row-reverse gap-8 lg:gap-24 items-center">
-      <figure className="perspective-distant group w-full lg:max-w-[33%] aspect-video lg:aspect-square relative rounded-3xl overflow-hidden shadow-sm">
+    <motion.article
+      transition={{ ease: [0.39, 0.575, 0.565, 1], delay: 0.0320, duration: 0.270 }}
+      variants={cardVariants} initial={["hidden"]}
+      whileInView={["enter"]}
+      viewport={{ once: true, amount: 0.2 }}
+      className="flex flex-col lg:flex-row lg:even:flex-row-reverse gap-8 lg:gap-24 items-center">
+      <figure className="perspective-distant group w-full lg:max-w-[33%] aspect-square relative rounded-3xl overflow-hidden shadow-sm">
         <AdvancedImage
           cldImg={cardImage}
           plugins={[
@@ -51,15 +70,15 @@ export default function SacramentCard({ image, category, title, path, descriptio
           </p>
         </section>
 
-        <footer className="mt-8">
+        <footer className="mt-8 flex justify-center lg:justify-start">
           <a
             href={path}
-            className="inline-block mx-auto lg:mx-0 cursor-pointer text-sm font-semibold border border-primary text-primary px-10 py-3 rounded-md hover:bg-primary hover:text-white transition-colors duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 outline-none"
+            className="inline-block cursor-pointer text-sm font-semibold border border-primary text-primary px-10 py-3 rounded-md hover:bg-primary hover:text-white transition-colors duration-300 focus:ring-2 focus:ring-primary focus:ring-offset-2 outline-none"
           >
             Conoce más detalles
           </a>
         </footer>
       </div>
-    </article>
+    </motion.article>
   );
 }
