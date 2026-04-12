@@ -11,6 +11,7 @@ export const cacheConfig = {
   encodingResource: "utf-8",
   cacheExpiration: {
     ms: 1_000 * 60 * 60 * 24,
-    hours: 24
+    hours: 24,
+    rangeTime: [8, 5, 0] as [number, number, number] // [hours, minutes, seconds]
   }
 };

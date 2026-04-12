@@ -96,4 +96,18 @@ export function getMassStatus(weekDay: Date, scheduledTime: string): MassStatus 
   return { type: "now", message: "Se está celebrando" };
 }
 
+// Check if the reference timestamp is a valid respect today
+export const isValidTimestamp = (
+  timestamp: number, [hour, minutes, seconds]: [hour: number, minutes: number, seconds: number]
+) => {
+  const today = dayjs();
+  const referenceTimestamp = dayjs(timestamp);
+  // eg. 8:45 AM => [8, 45, 0]
+  const persistentToday = dayjs(today.valueOf()).hour(hour).minute(minutes).second(seconds);
+
+  const isDifferentDay = !today.isSame(referenceTimestamp, "day");
+  const isNextToday = today.isAfter(persistentToday);
+  return !(isDifferentDay && isNextToday);
+}
+
 export default dayjs;
