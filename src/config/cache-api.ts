@@ -1,4 +1,5 @@
 import path from "node:path";
+import os from "node:os";
 
 // All the available json files stored on '.cache' folder
 export enum CacheFiles {
@@ -7,7 +8,7 @@ export enum CacheFiles {
 
 // All cache global configuration
 export const cacheConfig = {
-  rootPath: path.join(process.cwd(), ".cache"),
+  rootPath: path.join(process.env.NODE_ENV === "production" ? os.tmpdir() : process.cwd(), ".cache"),
   encodingResource: "utf-8",
   cacheExpiration: {
     ms: 1_000 * 60 * 60 * 24,
