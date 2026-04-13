@@ -21,8 +21,8 @@ type TimeUnit = {
  * e.g. "hace 3 días", "en 2 horas"
  */
 export const transformRelativeTime = (datetime: Date): string => {
-  const now = dayjs();
-  const target = dayjs(datetime);
+  const now = dayjs().tz();
+  const target = dayjs(datetime).tz();
   const diffSeconds = target.diff(now, "second");
   const absDiff = Math.abs(diffSeconds);
 
@@ -55,7 +55,7 @@ export const transformRelativeTime = (datetime: Date): string => {
  * Requires dayjs/plugin/isoWeek.
  */
 export const actualWeek = (currentDate: Date): Date[] => {
-  const startOfWeek = dayjs(currentDate).startOf("isoWeek");
+  const startOfWeek = dayjs(currentDate).tz().startOf("isoWeek");
   return Array.from({ length: 7 }, (_, i) =>
     startOfWeek.add(i, "day").toDate(),
   );
@@ -87,9 +87,9 @@ type MassStatus = {
 export function getMassStatus(weekDay: Date, scheduledTime: string): MassStatus {
   const [hours, minutes] = scheduledTime.split(":").map(Number);
 
-  const startTime = dayjs(weekDay).hour(hours).minute(minutes).second(0).millisecond(0);
+  const startTime = dayjs(weekDay).tz().hour(hours).minute(minutes).second(0).millisecond(0);
   const endTime = startTime.add(1, "hour");
-  const now = dayjs();
+  const now = dayjs().tz();
 
   if (now.isAfter(endTime)) return { type: "end", message: "Finalizó" };
   if (now.isBefore(startTime)) return { type: "incoming", message: "Próxima" };
@@ -100,10 +100,10 @@ export function getMassStatus(weekDay: Date, scheduledTime: string): MassStatus 
 export const isValidTimestamp = (
   timestamp: number, [hour, minutes, seconds]: [hour: number, minutes: number, seconds: number]
 ) => {
-  const today = dayjs();
-  const referenceTimestamp = dayjs(timestamp);
+  const today = dayjs().tz();
+  const referenceTimestamp = dayjs(timestamp).tz();
   // eg. 8:45 AM => [8, 45, 0]
-  const persistentToday = dayjs(today.valueOf()).hour(hour).minute(minutes).second(seconds);
+  const persistentToday = today.clone().hour(hour).minute(minutes).second(seconds);
 
   const isDifferentDay = !today.isSame(referenceTimestamp, "day");
   const isNextToday = today.isAfter(persistentToday);
