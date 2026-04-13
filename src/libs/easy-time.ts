@@ -12,8 +12,8 @@ type WeekResult = {
  * the actual day and returns current week array
  * */
 const matchWeek = (dateInput: string): WeekResult[] => {
-  const today = dayjs();
-  const parsedDate = dayjs(dateInput);
+  const today = dayjs().tz();
+  const parsedDate = dayjs(dateInput).tz();
   const humanFormat = "ddd, D [de] MMM [de] YYYY";
 
   const nextSunday =
@@ -65,9 +65,10 @@ const matchScheduleStatus = (
   scheduledTime: string,
   labels: StatusLabels = defaultStatus,
 ) => {
-  const today = dayjs();
+  const today = dayjs().tz();
   const [hours = 0, minutes = 0] = scheduledTime?.split(":")?.map(Number);
   const startTime = dayjs(weekDay)
+    .tz()
     .hour(hours)
     .minute(minutes)
     .second(0)
@@ -95,9 +96,9 @@ const matchScheduleStatus = (
  * */
 export const timeBootstrap = () => {
   return {
-    now: dayjs().format(),
+    now: dayjs().tz().format(),
     matchWeek,
     matchScheduleStatus,
-    parseNow: new Date(dayjs().format("YYYY-MM-DDTHH:mm:ss")),
+    parseNow: new Date(dayjs().tz().format("YYYY-MM-DDTHH:mm:ss")),
   };
 };
