@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import dayjs, { isValidTimestamp } from "./dayjs";
+import dayjs, { isValidTimestamp } from "@/libs/dayjs";
 
 describe("dayjs local configurations", () => {
   it("should invalidate yesterday's cache if it's now past 08:30 AM today", () => {

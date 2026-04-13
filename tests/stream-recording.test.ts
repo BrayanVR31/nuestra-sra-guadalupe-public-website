@@ -1,8 +1,8 @@
 import { describe, it, expect } from "vitest";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { GET } from "./stream-recording.json";
-import { type JSONResource, cleanCache, getCache, saveCache } from "@/libs/local-cache";
+import { GET } from "@/pages/api/stream-recording.json";
+import { type JSONResource, cleanCache, getCache } from "@/libs/local-cache";
 import type { YoutubeAPIResource } from "@/types/youtube-rss";
 import { CacheFiles, cacheConfig } from "@/config/cache-api";
 import dayjs from "@/libs/dayjs";
@@ -28,7 +28,7 @@ describe("Stream recording API", () => {
     await fs.writeFile(
       resourceFile,
       rowData,
-      cacheConfig.encodingResource
+      cacheConfig.encodingResource as any
     );
   }
   it("should return a 200 status code", async () => {

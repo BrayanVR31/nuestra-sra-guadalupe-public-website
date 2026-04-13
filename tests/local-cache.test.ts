@@ -1,7 +1,7 @@
 import { it, describe, expect } from "vitest";
 import { existsSync } from "node:fs";
 import path from "node:path";
-import { saveCache, cleanCache } from "./local-cache";
+import { saveCache, cleanCache } from "@/libs/local-cache";
 import { cacheConfig, CacheFiles } from "@/config/cache-api";
 import type { YoutubeAPIResource, YouTubeItem } from "@/types/youtube-rss";
 
